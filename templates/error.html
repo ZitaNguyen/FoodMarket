@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Error
+{% endblock %}
+
+{% block main %}
+    {% if code == 403 %}
+        <div class="alert alert-danger" role="alert">
+            {{message}}
+        </div>
+    {% else %}
+        <div class="alert alert-warning" role="alert">
+            {{message}}
+        </div>
+   {% endif %}
+{% endblock %}
