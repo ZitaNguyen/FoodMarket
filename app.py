@@ -127,13 +127,26 @@ def logout():
     return redirect("/")
 
 
-@app.route("/food")
+@app.route("/food", methods=["GET", "POST"])
 @login_required
 @role_required
 def food():
     """Seller add their products"""
 
-    return ("I'm a seller")
+    if request.method == "POST":
+        return redirect("/seller")
+
+    else:
+        return render_template("food.html")
+
+
+@app.route("/seller", methods=["GET"])
+@login_required
+@role_required
+def seller():
+    """Display all seller's products"""
+
+    return render_template("seller.html")
 
 
 
