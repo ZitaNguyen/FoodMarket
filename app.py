@@ -3,7 +3,9 @@ import os
 from flask import Flask, session, request, redirect, render_template, session
 from flask_session import Session
 from werkzeug.security import check_password_hash, generate_password_hash
-from helpers import error, login_required
+
+# from routes.register import register
+from helpers import error, login_required, role_required
 from queries import query_users, insert_user
 
 # Configure application
@@ -98,6 +100,7 @@ def login():
 
         # Query database for user
         user = query_users(email)
+        print(user)
 
         # Ensure user exists and password is correct
         if len(user) != 1 or not check_password_hash(user[0][3], password):
@@ -105,6 +108,9 @@ def login():
 
         # Remember which user has logged in
         session["user_id"] = user[0][0] # user_id
+
+        # Remember user's role
+        session["user_role"] = user[0][4]
 
         return redirect("/")
 
@@ -121,6 +127,16 @@ def logout():
     session.clear()
 
     return redirect("/")
+
+
+@app.route("/food")
+@login_required
+@role_required
+def food():
+    """Seller add their products"""
+
+    return ("I'm a seller")
+
 
 
 if __name__ == '__main__':
