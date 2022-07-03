@@ -100,16 +100,14 @@ def login():
 
         # Query database for user
         user = query_users(email)
-        print(user)
 
         # Ensure user exists and password is correct
         if len(user) != 1 or not check_password_hash(user[0][3], password):
             return error("invalid usernamed and/or password", 403)
 
-        # Remember which user has logged in
-        session["user_id"] = user[0][0] # user_id
-
-        # Remember user's role
+        # Remember user's info
+        session["user_id"] = user[0][0]
+        session["user_name"] = user[0][1]
         session["user_role"] = user[0][4]
 
         return redirect("/")

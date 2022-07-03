@@ -33,10 +33,15 @@
                 <div class="collapse navbar-collapse" id="navbar">
                     {% if session["user_id"] %}
                         <ul class="navbar-nav me-auto mt-2">
-                            <li class="nav-item"><a class="nav-link" href="/food">Food</a></li>
-                            <li class="nav-item"><a class="nav-link" href="">Restaurant</a></li>
+                            <li class="nav-item"><a class="nav-link" href="">Starter</a></li>
+                            <li class="nav-item"><a class="nav-link" href="">Main dish</a></li>
+                            <li class="nav-item"><a class="nav-link" href="">Dessert</a></li>
+                            {% if session["user_role"] == "seller" %}
+                            <li class="nav-item"><a class="nav-link" href="">Add food</a></li>
+                            {% endif %}
                         </ul>
                         <ul class="navbar-nav ms-auto mt-2">
+                            <li class="nav-item"><a class="nav-link" href="">Hi,{{ session["user_name"] }}</a></li>
                             <li class="nav-item"><a class="nav-link" href="/logout">Log Out</a></li>
                         </ul>
                     {% else %}
