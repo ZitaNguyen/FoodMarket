@@ -1,12 +1,14 @@
+from datetime import datetime
 import os
 
 from flask import Flask, session, request, redirect, render_template, session
 from flask_session import Session
 from werkzeug.security import check_password_hash, generate_password_hash
+from datetime import datetime
 
 # from routes.register import register
 from helpers import error, login_required, role_required
-from queries import query_users, insert_user
+from queries import query_seller_products, query_users, insert_user, insert_food
 
 # Configure application
 app = Flask(__name__)
@@ -130,24 +132,42 @@ def logout():
 @app.route("/food", methods=["GET", "POST"])
 @login_required
 @role_required
-def food():
+def add():
     """Seller add their products"""
 
     if request.method == "POST":
-        return redirect("/seller")
+
+        name = request.form.get("food-name")
+        category = request.form.get("food-category")
+        photo = request.form.get("food-photo")
+        price = request.form.get("food-price")
+        description = request.form.get("food-description")
+        now = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+
+        # Ensure all fields are not blank
+        if not name or not category or not photo or not price or not description:
+            return error("something is left empty", 400)
+
+        food_details = (name, category, photo, price, description, now, session["user_id"])
+        insert_food(food_details)
+
+        return redirect("/products")
 
     else:
         return render_template("food.html")
 
 
-@app.route("/seller", methods=["GET"])
+@app.route("/products", methods=["GET"])
 @login_required
 @role_required
-def seller():
+def display():
     """Display all seller's products"""
 
-    return render_template("seller.html")
+    products = query_seller_products(session["user_id"])
 
+    # filter by category
+
+    return render_template("products.html", products=products)
 
 
 if __name__ == '__main__':

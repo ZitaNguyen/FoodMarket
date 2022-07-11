@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Products
+{% endblock %}
+
+{% block main %}
+
+<div class="alert alert-success text-center h3" role="alert">
+    My Products
+</div>
+<!-- Images for products -->
+<div class="row row-cols-1 row-cols-lg-6 row-cols-md-3 g-4">
+    {% for product in products %}
+    <div class="col">
+      <div class="card h-100">
+        <img src="{{ product[3] }}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">{{ product[2] }}</h5> <!-- Product name -->
+          <p class="card-text">{{ product[4] }}</p> <!-- Product description -->
+        </div>
+        <div class="card-footer">
+          <small class="text-muted">${{ product[5] }}</small> <!-- Product price -->
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

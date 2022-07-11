@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block title %}
-    Log In
+    Food
 {% endblock %}
 
 {% block main %}
@@ -34,7 +34,7 @@
             <div class="form-group row justify-content-center">
                 <label for="food-photo" class="col-sm-2 col-form-label">Photo:</label>
                 <div class="col-sm-2">
-                    <input class="form-control mx-auto w-auto" name="food-photo" type="file">
+                    <input class="form-control mx-auto w-auto" name="food-photo" type="file" accept="image/*">
                 </div>
             </div>
 
@@ -42,11 +42,11 @@
 
         <div class="mb-3">
             <div class="form-group row justify-content-center">
-                <label for="food-name" class="col-sm-2 col-form-label">Price:</label>
+                <label for="food-price" class="col-sm-2 col-form-label">Price:</label>
                 <div class="col-sm-2">
                     <div class="input-group">
                         <span class="input-group-text">$</span>
-                        <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="food-name" name="food-name" type="text">
+                        <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="food-price" name="food-price" type="number" min="0">
                     </div>
                 </div>
             </div>
