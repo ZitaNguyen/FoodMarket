@@ -8,7 +8,7 @@ from werkzeug.utils import secure_filename
 from datetime import datetime
 
 # from routes.register import register
-from helpers import error, login_required, role_required
+from helpers import error, login_required, role_required, allowed_file
 from queries import query_seller_products, query_users, insert_user, insert_food
 
 # Configure application
@@ -148,11 +148,18 @@ def add():
 
         # Upload photo
         photo = request.files["food-photo"]
-        photo.save(os.path.join(app.config["UPLOAD_FOLDER"], secure_filename(photo.filename)))
-        url_photo = photo.filename
+
+        if photo.filename == '':
+            return error("no selected file", 400)
+
+        if photo and allowed_file(photo.filename):
+            photo.save(os.path.join(app.config["UPLOAD_FOLDER"], secure_filename(photo.filename)))
+            url_photo = photo.filename
+        else:
+            return error("file format is not allowed", 400)
 
         # Ensure all fields are not blank
-        if not name or not category or not photo or not price or not description:
+        if not name or not category or not price or not description:
             return error("something is left empty", 400)
 
         food_details = (name, category, url_photo, price, description, now, session["user_id"])
