@@ -4,6 +4,7 @@ import os
 from flask import Flask, session, request, redirect, render_template, session
 from flask_session import Session
 from werkzeug.security import check_password_hash, generate_password_hash
+from werkzeug.utils import secure_filename
 from datetime import datetime
 
 # from routes.register import register
@@ -19,6 +20,8 @@ app.config["TEMPLATES_AUTO_RELOAD"] = True
 # Configure session to use filesystem (instead of signed cookies)
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
+UPLOAD_FOLDER = 'static/photos'
+app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 Session(app)
 
 
@@ -139,16 +142,20 @@ def add():
 
         name = request.form.get("food-name")
         category = request.form.get("food-category")
-        photo = request.form.get("food-photo")
         price = request.form.get("food-price")
         description = request.form.get("food-description")
         now = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+
+        # Upload photo
+        photo = request.files["food-photo"]
+        photo.save(os.path.join(app.config["UPLOAD_FOLDER"], secure_filename(photo.filename)))
+        url_photo = photo.filename
 
         # Ensure all fields are not blank
         if not name or not category or not photo or not price or not description:
             return error("something is left empty", 400)
 
-        food_details = (name, category, photo, price, description, now, session["user_id"])
+        food_details = (name, category, url_photo, price, description, now, session["user_id"])
         insert_food(food_details)
 
         return redirect("/products")
