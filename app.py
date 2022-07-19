@@ -60,5 +60,19 @@ def products():
     return sellers.display_products()
 
 
+@app.route("/modify", methods=["POST"])
+@login_required
+@role_required
+def modify():
+    return sellers.modify_product()
+
+
+@app.route("/delete", methods=["POST"])
+@login_required
+@role_required
+def delete():
+    return sellers.delete_product()
+
+
 if __name__ == '__main__':
     app.run()

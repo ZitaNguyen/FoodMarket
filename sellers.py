@@ -53,3 +53,15 @@ def display_products():
     # filter by category
 
     return render_template("products.html", products=products)
+
+
+def modify_product():
+    """Modify information of existing product"""
+
+    return ('Modify page')
+
+
+def delete_product():
+    """Delete an existing product"""
+
+    return ('Delete page')

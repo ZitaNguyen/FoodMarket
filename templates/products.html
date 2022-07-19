@@ -19,10 +19,14 @@
           <h5 class="card-title">{{ product[2] }}</h5> <!-- Product name -->
           <p class="card-text">{{ product[4] }}</p> <!-- Product description -->
         </div>
-        <div class="card-footer d-flex justify-content-between">
-          <i class="bi bi-pencil"></i>
+        <div class="card-footer d-flex justify-content-between align-items-center">
+          <form action="/modify" method="post">
+            <button type="submit" class="btn btn-link"><span class="bi bi-pencil"></span></button>
+          </form>
           <small class="text-muted">${{ product[5] }}</small> <!-- Product price -->
-          <i class="bi bi-trash text-danger"></i>
+          <form action="/delete" method="post">
+            <button type="submit" style="color: red;" class="btn"><span class="bi bi-trash"></span></button>
+          </form>
         </div>
       </div>
     </div>
