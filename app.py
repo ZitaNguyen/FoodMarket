@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from flask_session import Session
 
 import users, sellers
@@ -31,6 +31,7 @@ def index():
     return render_template("index.html")
 
 
+# Users register, login, logout
 @app.route("/register", methods=["GET", "POST"])
 def register():
     return users.register()
@@ -46,25 +47,26 @@ def logout():
     return users.logout()
 
 
-@app.route("/food", methods=["GET", "POST"])
+# Sellers add, display, modify and delete product
+@app.route("/add", methods=["GET", "POST"])
 @login_required
 @role_required
-def food():
+def add():
     return sellers.add_products()
 
 
-@app.route("/products", methods=["GET"])
+@app.route("/display", methods=["GET"])
 @login_required
 @role_required
-def products():
+def display():
     return sellers.display_products()
 
 
-@app.route("/modify", methods=["POST"])
+@app.route("/modify/<string:product_id>", methods=["GET", "POST"])
 @login_required
 @role_required
-def modify():
-    return sellers.modify_product()
+def modify(product_id):
+    return sellers.modify_product(product_id)
 
 
 @app.route("/delete", methods=["POST"])

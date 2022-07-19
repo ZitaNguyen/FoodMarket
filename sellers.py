@@ -5,7 +5,7 @@ from werkzeug.utils import secure_filename
 from datetime import datetime
 
 from helpers import error, allowed_file
-from queries import insert_food, query_seller_products
+from queries import add_food, modify_food, get_product, seller_products
 
 
 def add_products():
@@ -37,28 +37,60 @@ def add_products():
             return error("something is left empty", 400)
 
         food_details = (name, category, url_photo, price, description, now, session["user_id"])
-        insert_food(food_details)
+        add_food(food_details)
 
-        return redirect("/products")
+        return redirect("/display")
 
     else:
-        return render_template("food.html")
+        return render_template("add_product.html")
 
 
 def display_products():
     """Display all seller's products"""
 
-    products = query_seller_products(session["user_id"])
+    products = seller_products(session["user_id"])
 
-    # filter by category
+    # filter by category: TO DO
 
-    return render_template("products.html", products=products)
+    return render_template("display_products.html", products=products)
 
 
-def modify_product():
+def modify_product(product_id):
     """Modify information of existing product"""
 
-    return ('Modify page')
+    # Get existing product
+    product = get_product(product_id)
+
+    if request.method == "POST":
+
+        name = request.form.get("food-name")
+        category = request.form.get("food-category")
+        price = request.form.get("food-price")
+        if request.form.get("food-description") == '':
+            description = product[4]
+        else:
+            description = request.form.get("food-description")
+
+        # Check if modify photo
+        photo = request.files["food-photo"]
+        if photo.filename == '':
+            url_photo = product[3]
+        else: # Upload new photo
+            if photo and allowed_file(photo.filename):
+                UPLOAD_FOLDER = 'static/photos'
+                photo.save(os.path.join(UPLOAD_FOLDER, secure_filename(photo.filename)))
+                url_photo = photo.filename
+            else:
+                return error("file format is not allowed", 400)
+
+        food_details = (name, category, url_photo, price, description, product_id)
+        modify_food(food_details)
+
+        return redirect("/display")
+
+    else:
+
+        return render_template("modify_product.html", product=product)
 
 
 def delete_product():

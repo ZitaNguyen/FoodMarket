@@ -37,11 +37,11 @@
                             <li class="nav-item"><a class="nav-link" href="">Main dish</a></li>
                             <li class="nav-item"><a class="nav-link" href="">Dessert</a></li>
                             {% if session["user_role"] == "seller" %}
-                            <li class="nav-item"><a class="btn btn-primary" role="button" href="/food">Add food</a></li>
+                            <li class="nav-item"><a class="btn btn-primary" role="button" href="/add">Add food</a></li>
                             {% endif %}
                         </ul>
                         <ul class="navbar-nav ms-auto mt-2">
-                            <li class="nav-item"><a class="nav-link" href="/products">Hi,{{ session["user_name"] }}</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/display">Hi,{{ session["user_name"] }}</a></li>
                             <li class="nav-item"><a class="nav-link" href="/logout">Log Out</a></li>
                         </ul>
                     {% else %}

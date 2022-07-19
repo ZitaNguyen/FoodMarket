@@ -1,0 +1,66 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Food
+{% endblock %}
+
+{% block main %}
+    <form action="/add" method="post" enctype="multipart/form-data">
+        <div class="mb-3">
+            <div class="form-group row justify-content-center">
+                <label for="food-name" class="col-sm-2 col-form-label">Food name:</label>
+                <div class="col-sm-2">
+                    <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="food-name" name="food-name" type="text">
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <div class="form-group row justify-content-center">
+                <label for="food-category" class="col-sm-2 col-form-label">Choose food category:</label>
+                <div class="col-sm-2">
+                    <input list="food-categories" id="food-kind" name="food-category" />
+
+                    <datalist id="food-categories">
+                        <option value="Starter">
+                        <option value="Main dish">
+                        <option value="Dessert">
+                    </datalist>
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <div class="form-group row justify-content-center">
+                <label for="food-photo" class="col-sm-2 col-form-label">Photo:</label>
+                <div class="col-sm-2">
+                    <input class="form-control mx-auto w-auto" name="food-photo" type="file">
+                </div>
+            </div>
+
+        </div>
+
+        <div class="mb-3">
+            <div class="form-group row justify-content-center">
+                <label for="food-price" class="col-sm-2 col-form-label">Price:</label>
+                <div class="col-sm-2">
+                    <div class="input-group">
+                        <span class="input-group-text">$</span>
+                        <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="food-price" name="food-price" type="number" min="0">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <div class="form-group row justify-content-center">
+                <label for="food-description" class="col-sm-2 col-form-label">Description:</label>
+                <div class="col-sm-2">
+                    <textarea class="form-control mx-auto w-auto" name="food-description" cols="30" rows="5" placeholder="What are food ingredients? (for example)"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <button class="btn btn-primary" type="submit">Save</button>
+    </form>
+{% endblock %}

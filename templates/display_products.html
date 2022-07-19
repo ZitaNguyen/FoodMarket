@@ -14,17 +14,25 @@
     {% for product in products %}
     <div class="col">
       <div class="card h-100">
+        <!-- Product image -->
         <img src="{{url_for('static', filename='photos/' + product[3])}}" class="card-img-top" alt="...">
+
         <div class="card-body">
-          <h5 class="card-title">{{ product[2] }}</h5> <!-- Product name -->
-          <p class="card-text">{{ product[4] }}</p> <!-- Product description -->
+          <!-- Product name -->
+          <h5 class="card-title">{{ product[2] }}</h5>
+          <!-- Product description -->
+          <p class="card-text">{{ product[4] }}</p>
         </div>
+
         <div class="card-footer d-flex justify-content-between align-items-center">
-          <form action="/modify" method="post">
+          <!-- Edit button -->
+          <form action="/modify/{{ product[0] }}" method="get">
             <button type="submit" class="btn btn-link"><span class="bi bi-pencil"></span></button>
           </form>
-          <small class="text-muted">${{ product[5] }}</small> <!-- Product price -->
-          <form action="/delete" method="post">
+          <!-- Product price -->
+          <small class="text-muted">${{ product[5] }}</small>
+          <!-- Delete button -->
+          <form action="/delete/{{ product[0] }}" method="get">
             <button type="submit" style="color: red;" class="btn"><span class="bi bi-trash"></span></button>
           </form>
         </div>
