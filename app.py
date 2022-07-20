@@ -69,11 +69,11 @@ def modify(product_id):
     return sellers.modify_product(product_id)
 
 
-@app.route("/delete", methods=["POST"])
+@app.route("/delete/<string:product_id>", methods=["POST"])
 @login_required
 @role_required
-def delete():
-    return sellers.delete_product()
+def delete(product_id):
+    return sellers.delete_product(product_id)
 
 
 if __name__ == '__main__':

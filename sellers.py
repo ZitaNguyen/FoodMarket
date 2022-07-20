@@ -5,7 +5,7 @@ from werkzeug.utils import secure_filename
 from datetime import datetime
 
 from helpers import error, allowed_file
-from queries import add_food, modify_food, get_product, seller_products
+from queries import query_add_product, query_modify_product, query_delete_product, get_product, seller_products
 
 
 def add_products():
@@ -37,7 +37,7 @@ def add_products():
             return error("something is left empty", 400)
 
         food_details = (name, category, url_photo, price, description, now, session["user_id"])
-        add_food(food_details)
+        query_add_product(food_details)
 
         return redirect("/display")
 
@@ -84,7 +84,7 @@ def modify_product(product_id):
                 return error("file format is not allowed", 400)
 
         food_details = (name, category, url_photo, price, description, product_id)
-        modify_food(food_details)
+        query_modify_product(food_details)
 
         return redirect("/display")
 
@@ -93,7 +93,9 @@ def modify_product(product_id):
         return render_template("modify_product.html", product=product)
 
 
-def delete_product():
+def delete_product(product_id):
     """Delete an existing product"""
 
-    return ('Delete page')
+    query_delete_product(product_id)
+
+    return redirect("/display")

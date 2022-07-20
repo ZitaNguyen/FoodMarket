@@ -18,7 +18,7 @@ def insert_user(user_details):
     conn.close()
 
 
-def add_food(food_details):
+def query_add_product(food_details):
     conn = sqlite3.connect("market.db")
     c = conn.cursor()
     sql_string = "INSERT INTO food (name, category, photo, price, description, date, user_id) VALUES (?, ?, ?, ?, ?, ?, ?)"
@@ -27,11 +27,19 @@ def add_food(food_details):
     conn.close()
 
 
-def modify_food(food_details):
+def query_modify_product(food_details):
     conn = sqlite3.connect("market.db")
     c = conn.cursor()
     sql_string = "UPDATE food SET (name, category, photo, price, description) = (?, ?, ?, ?, ?) WHERE id = ?"
     c.execute(sql_string, food_details)
+    conn.commit()
+    conn.close()
+
+
+def query_delete_product(product_id):
+    conn = sqlite3.connect("market.db")
+    c = conn.cursor()
+    c.execute("DELETE FROM food WHERE id = ?", (product_id,))
     conn.commit()
     conn.close()
 
@@ -47,6 +55,6 @@ def seller_products(user_id):
 def get_product(id):
     conn = sqlite3.connect("market.db")
     c = conn.cursor()
-    c.execute("SELECT * FROM food WHERE id = ?", (id),)
+    c.execute("SELECT * FROM food WHERE id = ?", (id,))
     product = c.fetchone()
     return product
