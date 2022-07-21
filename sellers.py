@@ -5,7 +5,7 @@ from werkzeug.utils import secure_filename
 from datetime import datetime
 
 from helpers import error, allowed_file
-from queries import query_add_product, query_modify_product, query_delete_product, get_product, seller_products
+from queries import query_add_product, query_modify_product, query_delete_product, query_get_a_product, query_get_seller_products
 
 
 def add_products():
@@ -48,7 +48,7 @@ def add_products():
 def display_products():
     """Display all seller's products"""
 
-    products = seller_products(session["user_id"])
+    products = query_get_seller_products(session["user_id"])
 
     # filter by category: TO DO
 
@@ -59,7 +59,7 @@ def modify_product(product_id):
     """Modify information of existing product"""
 
     # Get existing product
-    product = get_product(product_id)
+    product = query_get_a_product(product_id)
 
     if request.method == "POST":
 

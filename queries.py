@@ -18,6 +18,8 @@ def insert_user(user_details):
     conn.close()
 
 
+# Queries for sellers
+
 def query_add_product(food_details):
     conn = sqlite3.connect("market.db")
     c = conn.cursor()
@@ -44,7 +46,7 @@ def query_delete_product(product_id):
     conn.close()
 
 
-def seller_products(user_id):
+def query_get_seller_products(user_id):
     conn = sqlite3.connect("market.db")
     c = conn.cursor()
     c.execute("SELECT * FROM food WHERE user_id = ?", (user_id,))
@@ -52,7 +54,7 @@ def seller_products(user_id):
     return products
 
 
-def get_product(id):
+def query_get_a_product(id):
     conn = sqlite3.connect("market.db")
     c = conn.cursor()
     c.execute("SELECT * FROM food WHERE id = ?", (id,))
