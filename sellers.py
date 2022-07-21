@@ -49,10 +49,11 @@ def display_products():
     """Display all seller's products"""
 
     products = query_get_seller_products(session["user_id"])
+    starters = list(filter(lambda product: product[1] == "Starter", products))
+    main_dishes = list(filter(lambda product: product[1] == "Main dish", products))
+    desserts = list(filter(lambda product: product[1] == "Dessert", products))
 
-    # filter by category: TO DO
-
-    return render_template("display_products.html", products=products)
+    return render_template("display_products.html", starters=starters, main_dishes=main_dishes, desserts=desserts)
 
 
 def modify_product(product_id):
