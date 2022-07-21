@@ -1,6 +1,8 @@
 import sqlite3
 
 
+# Queries for users
+
 def query_users(email):
     conn = sqlite3.connect("market.db")
     c = conn.cursor()
@@ -16,6 +18,14 @@ def insert_user(user_details):
     c.execute(sql_string, user_details)
     conn.commit()
     conn.close()
+
+
+def query_get_all_products():
+    conn = sqlite3.connect("market.db")
+    c = conn.cursor()
+    c.execute ("SELECT * FROM food")
+    all_products = c.fetchall()
+    return all_products
 
 
 # Queries for sellers

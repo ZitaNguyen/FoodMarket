@@ -3,6 +3,7 @@ from flask_session import Session
 
 import users, sellers
 from helpers import login_required, role_required
+from queries import query_get_all_products
 
 # Configure application
 app = Flask(__name__)
@@ -28,7 +29,11 @@ def after_request(response):
 @app.route("/")
 @login_required
 def index():
-    return render_template("index.html")
+    all_products = query_get_all_products()
+    starters = list(filter(lambda product: product[1] == "Starter", all_products))
+    main_dishes = list(filter(lambda product: product[1] == "Main dish", all_products))
+    desserts = list(filter(lambda product: product[1] == "Dessert", all_products))
+    return render_template("index.html", starters=starters, main_dishes=main_dishes, desserts=desserts)
 
 
 # Users register, login, logout

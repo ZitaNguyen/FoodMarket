@@ -11,78 +11,31 @@
 </div>
 <!-- Images for Starter -->
 <div class="row row-cols-1 row-cols-lg-6 row-cols-md-3 g-4">
+  {% if not starters %}
     <div class="col">
       <div class="card h-100">
-        <img src="{{url_for('static', filename='photos/food1.jpeg')}}" class="card-img-top" alt="...">
+        <img class="card-img-top" src="{{url_for('static', filename='photos/no_food.jpeg')}}" alt="No product">
         <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-        </div>
-        <div class="card-footer">
-          <small class="text-muted">Last updated 3 mins ago</small>
+          <p class="card-text">No starter.</p>
         </div>
       </div>
     </div>
-    <div class="col">
-      <div class="card h-100">
-        <img src="{{url_for('static', filename='photos/food2.jpeg')}}" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-        </div>
-        <div class="card-footer">
-          <small class="text-muted">Last updated 3 mins ago</small>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card h-100">
-        <img src="{{url_for('static', filename='photos/food3.jpeg')}}" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-        </div>
-        <div class="card-footer">
-          <small class="text-muted">Last updated 3 mins ago</small>
+  {% else %}
+    {% for starter in starters %}
+      <div class="col">
+        <div class="card h-100">
+          <img src="{{url_for('static', filename='photos/' + starter[3])}}" class="card-img-top" alt="{{ starter[2] }}">
+          <div class="card-body">
+            <h5 class="card-title">{{ starter[2] }}</h5>
+            <p class="card-text">{{ starter[4] }}</p>
+          </div>
+          <div class="card-footer">
+            <small class="text-muted">${{ starter[5] }}</small>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="col">
-      <div class="card h-100">
-        <img src="{{url_for('static', filename='photos/food1.jpeg')}}" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-        </div>
-        <div class="card-footer">
-          <small class="text-muted">Last updated 3 mins ago</small>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card h-100">
-        <img src="{{url_for('static', filename='photos/food2.jpeg')}}" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-        </div>
-        <div class="card-footer">
-          <small class="text-muted">Last updated 3 mins ago</small>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card h-100">
-        <img src="{{url_for('static', filename='photos/food3.jpeg')}}" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-        </div>
-        <div class="card-footer">
-          <small class="text-muted">Last updated 3 mins ago</small>
-        </div>
-      </div>
-    </div>
+    {% endfor %}
+  {% endif %}
 </div>
 
 <!-- Main dish section -->
@@ -91,78 +44,31 @@
 </div>
 <!-- Images for Main dish -->
 <div class="row row-cols-1 row-cols-lg-6 row-cols-md-3 g-4">
+  {% if not main_dishes %}
     <div class="col">
       <div class="card h-100">
-        <img src="{{url_for('static', filename='photos/food1.jpeg')}}" class="card-img-top" alt="...">
+        <img class="card-img-top" src="{{url_for('static', filename='photos/no_food.jpeg')}}" alt="No product">
         <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-        </div>
-        <div class="card-footer">
-          <small class="text-muted">Last updated 3 mins ago</small>
+          <p class="card-text">No main dish.</p>
         </div>
       </div>
     </div>
-    <div class="col">
-      <div class="card h-100">
-        <img src="{{url_for('static', filename='photos/food2.jpeg')}}" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-        </div>
-        <div class="card-footer">
-          <small class="text-muted">Last updated 3 mins ago</small>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card h-100">
-        <img src="{{url_for('static', filename='photos/food3.jpeg')}}" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-        </div>
-        <div class="card-footer">
-          <small class="text-muted">Last updated 3 mins ago</small>
+  {% else %}
+    {% for main_dish in main_dishes %}
+      <div class="col">
+        <div class="card h-100">
+          <img src="{{url_for('static', filename='photos/' + main_dish[3])}}" class="card-img-top" alt="{{ main_dish[2] }}">
+          <div class="card-body">
+            <h5 class="card-title">{{ main_dish[2] }}</h5>
+            <p class="card-text">{{ main_dish[4] }}</p>
+          </div>
+          <div class="card-footer">
+            <small class="text-muted">${{ main_dish[5] }}</small>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="col">
-      <div class="card h-100">
-        <img src="{{url_for('static', filename='photos/food1.jpeg')}}" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-        </div>
-        <div class="card-footer">
-          <small class="text-muted">Last updated 3 mins ago</small>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card h-100">
-        <img src="{{url_for('static', filename='photos/food2.jpeg')}}" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-        </div>
-        <div class="card-footer">
-          <small class="text-muted">Last updated 3 mins ago</small>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card h-100">
-        <img src="{{url_for('static', filename='photos/food3.jpeg')}}" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-        </div>
-        <div class="card-footer">
-          <small class="text-muted">Last updated 3 mins ago</small>
-        </div>
-      </div>
-    </div>
+    {% endfor %}
+  {% endif %}
 </div>
 
 <!-- Dessert section -->
@@ -171,77 +77,30 @@
 </div>
 <!-- Images for Dessert -->
 <div class="row row-cols-1 row-cols-lg-6 row-cols-md-3 g-4">
+  {% if not desserts %}
     <div class="col">
       <div class="card h-100">
-        <img src="{{url_for('static', filename='photos/food1.jpeg')}}" class="card-img-top" alt="...">
+        <img class="card-img-top" src="{{url_for('static', filename='photos/no_food.jpeg')}}" alt="No product">
         <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-        </div>
-        <div class="card-footer">
-          <small class="text-muted">Last updated 3 mins ago</small>
+          <p class="card-text">No dessert.</p>
         </div>
       </div>
     </div>
-    <div class="col">
-      <div class="card h-100">
-        <img src="{{url_for('static', filename='photos/food2.jpeg')}}" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-        </div>
-        <div class="card-footer">
-          <small class="text-muted">Last updated 3 mins ago</small>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card h-100">
-        <img src="{{url_for('static', filename='photos/food3.jpeg')}}" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-        </div>
-        <div class="card-footer">
-          <small class="text-muted">Last updated 3 mins ago</small>
+  {% else %}
+    {% for dessert in desserts %}
+      <div class="col">
+        <div class="card h-100">
+          <img src="{{url_for('static', filename='photos/' + dessert[3])}}" class="card-img-top" alt="{{ dessert[2] }}">
+          <div class="card-body">
+            <h5 class="card-title">{{ dessert[2] }}</h5>
+            <p class="card-text">{{ dessert[4] }}</p>
+          </div>
+          <div class="card-footer">
+            <small class="text-muted">${{ dessert[5] }}</small>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="col">
-      <div class="card h-100">
-        <img src="{{url_for('static', filename='photos/food1.jpeg')}}" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-        </div>
-        <div class="card-footer">
-          <small class="text-muted">Last updated 3 mins ago</small>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card h-100">
-        <img src="{{url_for('static', filename='photos/food2.jpeg')}}" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-        </div>
-        <div class="card-footer">
-          <small class="text-muted">Last updated 3 mins ago</small>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card h-100">
-        <img src="{{url_for('static', filename='photos/food3.jpeg')}}" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-        </div>
-        <div class="card-footer">
-          <small class="text-muted">Last updated 3 mins ago</small>
-        </div>
-      </div>
-    </div>
+    {% endfor %}
+  {% endif %}
 </div>
 {% endblock %}
