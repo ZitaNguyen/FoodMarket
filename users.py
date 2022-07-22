@@ -72,6 +72,7 @@ def login():
         session["user_id"] = user[0][0]
         session["user_name"] = user[0][1]
         session["user_role"] = user[0][4]
+        session["user_about"] = user[0][5]
 
         return redirect("/")
 

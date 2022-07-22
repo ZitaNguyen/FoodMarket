@@ -45,10 +45,10 @@ def add_products():
         return render_template("add_product.html")
 
 
-def display_products():
+def display_products(seller_id):
     """Display all seller's products"""
 
-    products = query_get_seller_products(session["user_id"])
+    products = query_get_seller_products(seller_id)
     starters = list(filter(lambda product: product[1] == "Starter", products))
     main_dishes = list(filter(lambda product: product[1] == "Main dish", products))
     desserts = list(filter(lambda product: product[1] == "Dessert", products))

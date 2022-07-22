@@ -30,6 +30,13 @@ def query_get_all_products():
 
 # Queries for sellers
 
+def query_get_seller(id):
+    conn = sqlite3.connect("market.db")
+    c = conn.cursor()
+    c.execute("SELECT * FROM users WHERE id = ?", (id,))
+    seller = c.fetchone()
+    return seller
+
 def query_add_product(food_details):
     conn = sqlite3.connect("market.db")
     c = conn.cursor()

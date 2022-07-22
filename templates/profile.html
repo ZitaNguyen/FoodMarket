@@ -1,0 +1,108 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Profile
+{% endblock %}
+
+{% block main %}
+<div class="row mx-5">
+    <!-- Contact -->
+    <div class="col-xs-1 col-lg-3">
+        <div class="h3 py-3">
+            Contact
+        </div>
+        <dl class="row">
+            <dt class="col-sm-3">Name</dt>
+            <dd class="col-sm-9">{{ seller[1].capitalize() }}</dd>
+
+            <dt class="col-sm-3">About</dt>
+            <dd class="col-sm-9">{{ seller[5] }}
+            </dd>
+
+            <dt class="col-sm-3">Email</dt>
+            <dd class="col-sm-9">{{ seller[2] }}</dd>
+        </dl>
+    </div>
+
+    <!-- Menu -->
+    <div class="col-xs-1 col-lg-9">
+        <div class="alert alert-primary text-center h3" role="alert">
+            Menu
+        </div>
+        <div>
+            <!-- Starters -->
+            <div class="py-3">
+                <h5>Starters</h5>
+                <div class="row row-cols-1 row-cols-lg-6 row-cols-md-3 g-4 text-center h-50">
+                    {% if not starters %}
+                        <p>No starter.</p>
+                    {% else %}
+                        {% for starter in starters %}
+                            <div class="col">
+                                <div class="card card-profile">
+                                    <img src="{{url_for('static', filename='photos/' + starter[3])}}" class="card-img-top" alt="{{ starter[2] }}">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ starter[2].capitalize() }}</h5>
+                                        <p class="card-text">{{ starter[4] }}</p>
+                                    </div>
+                                    <div class="card-footer">
+                                        <small class="text-muted">${{ starter[5] }}</small>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+            <!-- Main dishes -->
+            <div class="py-3">
+                <h5>Main dishes</h5>
+                <div class="row row-cols-1 row-cols-lg-6 row-cols-md-3 g-4 text-center h-50">
+                    {% if not main_dishes %}
+                        <p>No main dish.</p>
+                    {% else %}
+                        {% for main_dish in main_dishes %}
+                            <div class="col">
+                                <div class="card card-profile">
+                                    <img src="{{url_for('static', filename='photos/' + main_dish[3])}}" class="card-img-top" alt="{{ main_dish[2] }}">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ main_dish[2].capitalize() }}</h5>
+                                        <p class="card-text">{{ main_dish[4] }}</p>
+                                    </div>
+                                    <div class="card-footer">
+                                        <small class="text-muted">${{ main_dish[5] }}</small>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+            <!-- Desserts -->
+            <div class="py-3">
+                <h5>Desserts</h5>
+                <div class="row row-cols-1 row-cols-lg-6 row-cols-md-3 g-4 text-center h-50">
+                    {% if not desserts %}
+                        <p>No dessert.</p>
+                    {% else %}
+                        {% for dessert in desserts %}
+                            <div class="col">
+                                <div class="card card-profile">
+                                    <img src="{{url_for('static', filename='photos/' + dessert[3])}}" class="card-img-top" alt="{{ dessert[2] }}">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ dessert[2].capitalize() }}</h5>
+                                        <p class="card-text">{{ dessert[4] }}</p>
+                                    </div>
+                                    <div class="card-footer">
+                                        <small class="text-muted">${{ dessert[5] }}</small>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

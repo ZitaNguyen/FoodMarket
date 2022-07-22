@@ -24,7 +24,9 @@
     {% for starter in starters %}
       <div class="col">
         <div class="card h-100">
-          <img src="{{url_for('static', filename='photos/' + starter[3])}}" class="card-img-top" alt="{{ starter[2] }}">
+          <a href="/seller/{{ starter[7] }}">
+            <img src="{{url_for('static', filename='photos/' + starter[3])}}" class="card-img-top" alt="{{ starter[2] }}">
+          </a>
           <div class="card-body">
             <h5 class="card-title">{{ starter[2] }}</h5>
             <p class="card-text">{{ starter[4] }}</p>
@@ -57,7 +59,9 @@
     {% for main_dish in main_dishes %}
       <div class="col">
         <div class="card h-100">
-          <img src="{{url_for('static', filename='photos/' + main_dish[3])}}" class="card-img-top" alt="{{ main_dish[2] }}">
+          <a href="/seller/{{ main_dish[7] }}">
+            <img src="{{url_for('static', filename='photos/' + main_dish[3])}}" class="card-img-top" alt="{{ main_dish[2] }}">
+          </a>
           <div class="card-body">
             <h5 class="card-title">{{ main_dish[2] }}</h5>
             <p class="card-text">{{ main_dish[4] }}</p>
@@ -90,7 +94,9 @@
     {% for dessert in desserts %}
       <div class="col">
         <div class="card h-100">
-          <img src="{{url_for('static', filename='photos/' + dessert[3])}}" class="card-img-top" alt="{{ dessert[2] }}">
+          <a href="/seller/{{ dessert[7] }}">
+            <img src="{{url_for('static', filename='photos/' + dessert[3])}}" class="card-img-top" alt="{{ dessert[2] }}">
+          </a>
           <div class="card-body">
             <h5 class="card-title">{{ dessert[2] }}</h5>
             <p class="card-text">{{ dessert[4] }}</p>
