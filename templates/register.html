@@ -28,24 +28,39 @@
         <div class="mb-3">
             <input class="form-control mx-auto w-auto" id="confirmation" name="confirmation" placeholder="Confirmation" type="password">
         </div>
-        <div class="mb-3">
-            <textarea class="form-control mx-auto w-auto invisible" name="about" cols="30" rows="5" placeholder="If you are a seller, tell us more about yourself"></textarea>
+        <div id="contact" class="invisible">
+            <div class="mb-3">
+                <input class="form-control mx-auto w-auto" id="phone" name="phone" placeholder="Phone" type="text">
+            </div>
+            <div class="mb-3">
+                <p>Where can buyers find you?</p>
+            </div>
+            <div class="mb-3">
+                <input class="form-control mx-auto w-auto" id="district" name="district" placeholder="District" type="text">
+            </div>
+            <div class="mb-3">
+                <input class="form-control mx-auto w-auto" id="city" name="city" placeholder="City" type="text">
+            </div>
+            <div class="mb-3">
+                <textarea class="form-control mx-auto w-auto" name="about" cols="30" rows="5" placeholder="Tell buyers more about yourself"></textarea>
+            </div>
         </div>
+
         {% block javascript %}
             <script>
-                const about = document.querySelector("textarea");
+                const seller_contact = document.querySelector("#contact");
 
                 document.querySelector('#seller').addEventListener('change', (event)=>
                 {
                     if (event.target.checked)
                     {
-                        about.classList.remove("invisible");
-                        about.classList.add("visible");
+                        seller_contact.classList.remove("invisible");
+                        seller_contact.classList.add("visible");
                     }
                     else
                     {
-                        about.classList.remove("visible");
-                        about.classList.add("invisible");
+                        seller_contact.classList.remove("visible");
+                        seller_contact.classList.add("invisible");
                     }
                 });
 
@@ -53,13 +68,13 @@
                 {
                     if (event.target.checked)
                     {
-                        about.classList.add("invisible");
-                        about.classList.remove("visible");
+                        seller_contact.classList.add("invisible");
+                        seller_contact.classList.remove("visible");
                     }
                     else
                     {
-                        about.classList.remove("invisible");
-                        about.classList.add("visible");
+                        seller_contact.classList.remove("invisible");
+                        seller_contact.classList.add("visible");
                     }
                 });
             </script>

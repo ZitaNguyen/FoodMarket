@@ -1,7 +1,7 @@
 from flask import session, request, redirect, render_template
 from werkzeug.security import check_password_hash, generate_password_hash
 from helpers import error
-from queries import query_users, insert_user
+from queries import query_users, query_insert_user, query_insert_contact, query_get_last_user
 
 
 def register():
@@ -34,10 +34,24 @@ def register():
         if "about" in request.form:
             about = request.form.get("about")
             user_details = (username, email, role, hash, about)
-            insert_user(user_details)
+            query_insert_user(user_details)
         else:
             user_details = (username, email, role, hash)
-            insert_user(user_details)
+            query_insert_user(user_details)
+
+        # Insert seller contact to db
+        if role == "seller":
+            # Ensure phone, city, district are not blank
+            phone = request.form.get("phone")
+            district = request.form.get("district")
+            city = request.form.get("city")
+
+            if not phone or not district or not city:
+                return error("something is left empty", 400)
+
+            last_user = query_get_last_user()
+            contact_details = (district, city, phone, last_user[0])
+            query_insert_contact(contact_details)
 
         return redirect("/login")
 
