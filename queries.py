@@ -54,6 +54,14 @@ def query_get_seller(id):
     seller = c.fetchone()
     return seller
 
+def query_get_contact(id):
+    conn = sqlite3.connect("market.db")
+    c = conn.cursor()
+    c.execute("SELECT * FROM contact WHERE user_id = ?", (id,))
+    contact = c.fetchone()
+    return contact
+
+
 def query_add_product(food_details):
     conn = sqlite3.connect("market.db")
     c = conn.cursor()

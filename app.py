@@ -3,7 +3,7 @@ from flask_session import Session
 
 import users, sellers
 from helpers import login_required, role_required
-from queries import query_get_all_products, query_get_seller_products, query_get_seller
+from queries import query_get_all_products, query_get_seller_products, query_get_seller, query_get_contact
 
 # Configure application
 app = Flask(__name__)
@@ -40,11 +40,12 @@ def index():
 @login_required
 def seller_profile(seller_id):
     seller = query_get_seller(seller_id)
+    contact = query_get_contact(seller_id)
     products = query_get_seller_products(seller_id)
     starters = list(filter(lambda product: product[1] == "Starter", products))
     main_dishes = list(filter(lambda product: product[1] == "Main dish", products))
     desserts = list(filter(lambda product: product[1] == "Dessert", products))
-    return render_template("profile.html", seller=seller, starters=starters, main_dishes=main_dishes, desserts=desserts)
+    return render_template("profile.html", seller=seller, starters=starters, main_dishes=main_dishes, desserts=desserts, contact=contact)
 
 
 # Users register, login, logout
