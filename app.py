@@ -3,7 +3,7 @@ from flask_session import Session
 
 import users, sellers
 from helpers import login_required, role_required
-from queries import query_get_all_products, query_get_seller_products, query_get_seller, query_get_contact
+from queries import query_get_all_products, query_get_seller_products, query_get_seller, query_get_contact, query_get_starters, query_get_main_dishes, query_get_desserts
 
 # Configure application
 app = Flask(__name__)
@@ -34,6 +34,27 @@ def index():
     main_dishes = list(filter(lambda product: product[1] == "Main dish", all_products))
     desserts = list(filter(lambda product: product[1] == "Dessert", all_products))
     return render_template("index.html", starters=starters, main_dishes=main_dishes, desserts=desserts)
+
+
+@app.route("/starters", methods=["GET"])
+@login_required
+def starters():
+    starters = query_get_starters()
+    return render_template("starters.html", starters=starters)
+
+
+@app.route("/main_dishes", methods=["GET"])
+@login_required
+def main_dishes():
+    main_dishes = query_get_main_dishes()
+    return render_template("main_dishes.html", main_dishes=main_dishes)
+
+
+@app.route("/desserts", methods=["GET"])
+@login_required
+def desserts():
+    desserts = query_get_desserts()
+    return render_template("desserts.html", desserts=desserts)
 
 
 @app.route("/seller/<string:seller_id>", methods=["GET"])

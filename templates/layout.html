@@ -33,9 +33,9 @@
                 <div class="collapse navbar-collapse" id="navbar">
                     {% if session["user_id"] %}
                         <ul class="navbar-nav me-auto mt-2">
-                            <li class="nav-item"><a class="nav-link" href="">Starter</a></li>
-                            <li class="nav-item"><a class="nav-link" href="">Main dish</a></li>
-                            <li class="nav-item"><a class="nav-link" href="">Dessert</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/starters">Starter</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/main_dishes">Main dish</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/desserts">Dessert</a></li>
                             {% if session["user_role"] == "seller" %}
                             <li class="nav-item"><a class="btn btn-primary" role="button" href="/add">Add food</a></li>
                             {% endif %}
@@ -53,14 +53,6 @@
                 </div>
             </div>
         </nav>
-
-        <!-- {% if get_flashed_messages() %}
-            <header>
-                <div class="alert alert-primary mb-0 text-center" role="alert">
-                    {{ get_flashed_messages() | join(" ") }}
-                </div>
-            </header>
-        {% endif %} -->
 
         <main class="container-fluid py-5">
             {% block main %}{% endblock %}

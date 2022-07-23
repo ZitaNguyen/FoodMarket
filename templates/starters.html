@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Starters
+{% endblock %}
+
+{% block main %}
+<div class="alert alert-success text-center h3" role="alert">
+  Starters
+</div>
+<!-- Images -->
+<div class="row row-cols-1 row-cols-lg-6 row-cols-md-3 g-4">
+  {% if not starters %}
+    <div class="col">
+      <div class="card h-100">
+        <img class="card-img-top" src="{{url_for('static', filename='photos/no_food.jpeg')}}" alt="No product">
+        <div class="card-body">
+          <p class="card-text">No starter.</p>
+        </div>
+      </div>
+    </div>
+  {% else %}
+    {% for starter in starters %}
+      <div class="col">
+        <div class="card h-100">
+          <!-- Product image -->
+          <img src="{{url_for('static', filename='photos/' + starter[3])}}" class="card-img-top" alt="{{ starter[2] }}">
+
+          <div class="card-body">
+            <!-- Product name -->
+            <h5 class="card-title">{{ starter[2] }}</h5>
+            <!-- Product description -->
+            <p class="card-text">{{ starter[4] }}</p>
+          </div>
+
+          <div class="card-footer d-flex justify-content-between align-items-center">
+            <!-- Product price -->
+            <small class="text-muted">${{ starter[5] }}</small>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  {% endif %}
+</div>
+{% endblock %}

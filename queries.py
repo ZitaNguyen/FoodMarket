@@ -37,14 +37,6 @@ def query_insert_contact(contact_details):
     conn.close()
 
 
-def query_get_all_products():
-    conn = sqlite3.connect("market.db")
-    c = conn.cursor()
-    c.execute ("SELECT * FROM food")
-    all_products = c.fetchall()
-    return all_products
-
-
 # Queries for sellers
 
 def query_get_seller(id):
@@ -96,9 +88,43 @@ def query_get_seller_products(user_id):
     return products
 
 
+# Queries for food
+
+def query_get_all_products():
+    conn = sqlite3.connect("market.db")
+    c = conn.cursor()
+    c.execute ("SELECT * FROM food")
+    all_products = c.fetchall()
+    return all_products
+
+
 def query_get_a_product(id):
     conn = sqlite3.connect("market.db")
     c = conn.cursor()
     c.execute("SELECT * FROM food WHERE id = ?", (id,))
     product = c.fetchone()
     return product
+
+
+def query_get_starters():
+    conn = sqlite3.connect("market.db")
+    c = conn.cursor()
+    c.execute("SELECT * FROM food WHERE category='Starter' ")
+    starters = c.fetchall()
+    return starters
+
+
+def query_get_main_dishes():
+    conn = sqlite3.connect("market.db")
+    c = conn.cursor()
+    c.execute("SELECT * FROM food WHERE category='Main dish' ")
+    main_dishes = c.fetchall()
+    return main_dishes
+
+
+def query_get_desserts():
+    conn = sqlite3.connect("market.db")
+    c = conn.cursor()
+    c.execute("SELECT * FROM food WHERE category='Dessert' ")
+    desserts = c.fetchall()
+    return desserts
