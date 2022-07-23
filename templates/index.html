@@ -21,7 +21,7 @@
       </div>
     </div>
   {% else %}
-    {% for starter in starters %}
+    {% for starter in starters[-6:] %}
       <div class="col">
         <div class="card h-100">
           <a href="/seller/{{ starter[7] }}">
@@ -39,8 +39,8 @@
     {% endfor %}
   {% endif %}
 </div>
-{% if starters %}
 <!-- See more button -->
+{% if starters and starters|length > 6 %}
 <a class="link-secondary button-see-more" href="/starters">See more <i class="bi bi-arrow-right"></i></a>
 {% endif %}
 
@@ -60,7 +60,7 @@
       </div>
     </div>
   {% else %}
-    {% for main_dish in main_dishes %}
+    {% for main_dish in main_dishes[-6:] %}
       <div class="col">
         <div class="card h-100">
           <a href="/seller/{{ main_dish[7] }}">
@@ -78,8 +78,8 @@
     {% endfor %}
   {% endif %}
 </div>
-{% if main_dishes %}
 <!-- See more button -->
+{% if main_dishes and main_dishes|length > 6 %}
 <a class="link-secondary button-see-more" href="/main_dishes">See more <i class="bi bi-arrow-right"></i></a>
 {% endif %}
 
@@ -99,7 +99,7 @@
       </div>
     </div>
   {% else %}
-    {% for dessert in desserts %}
+    {% for dessert in desserts[-6:] %}
       <div class="col">
         <div class="card h-100">
           <a href="/seller/{{ dessert[7] }}">
@@ -117,8 +117,8 @@
     {% endfor %}
   {% endif %}
 </div>
-{% if desserts %}
 <!-- See more button -->
+{% if desserts and desserts|length > 6 %}
 <a class="link-secondary button-see-more" href="/desserts">See more <i class="bi bi-arrow-right"></i></a>
 {% endif %}
 {% endblock %}
