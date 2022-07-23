@@ -39,6 +39,10 @@
     {% endfor %}
   {% endif %}
 </div>
+{% if starters %}
+<!-- See more button -->
+<a class="link-secondary button-see-more" href="/starters">See more <i class="bi bi-arrow-right"></i></a>
+{% endif %}
 
 <!-- Main dish section -->
 <div class="alert alert-dark text-center h3 mt-5" role="alert">
@@ -74,6 +78,10 @@
     {% endfor %}
   {% endif %}
 </div>
+{% if main_dishes %}
+<!-- See more button -->
+<a class="link-secondary button-see-more" href="/main_dishes">See more <i class="bi bi-arrow-right"></i></a>
+{% endif %}
 
 <!-- Dessert section -->
 <div class="alert alert-primary text-center h3 mt-5" role="alert">
@@ -109,4 +117,8 @@
     {% endfor %}
   {% endif %}
 </div>
+{% if desserts %}
+<!-- See more button -->
+<a class="link-secondary button-see-more" href="/desserts">See more <i class="bi bi-arrow-right"></i></a>
+{% endif %}
 {% endblock %}
