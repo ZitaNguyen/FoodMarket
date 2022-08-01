@@ -1,3 +1,8 @@
+a:link, a:visited {
+    text-decoration: none;
+    color: rgba(7, 7, 7, 0.9);
+}
+
 /* Size for brand */
 nav .navbar-brand
 {
@@ -31,6 +36,7 @@ nav .navbar-brand .blue
     margin-right: 20px;
     margin-top: 10px;
 }
+
 
 
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css");

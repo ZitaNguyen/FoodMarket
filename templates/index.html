@@ -23,19 +23,19 @@
   {% else %}
     {% for starter in starters[-6:] %}
       <div class="col">
-        <div class="card h-100">
-          <a href="/product/{{ starter[0] }}">
+        <a href="/product/{{ starter[0] }}">
+          <div class="card h-100">
             <img src="{{url_for('static', filename='photos/' + starter[3])}}" class="card-img-top" alt="{{ starter[2] }}">
+            <div class="card-body">
+              <h5 class="card-title">{{ starter[2] }}</h5>
+              <p class="card-text">{{ starter[4] }}</p>
+            </div>
+            <div class="card-footer">
+              <small class="text-muted">${{ starter[5] }}</small>
+            </div>
+          </div>
           </a>
-          <div class="card-body">
-            <h5 class="card-title">{{ starter[2] }}</h5>
-            <p class="card-text">{{ starter[4] }}</p>
-          </div>
-          <div class="card-footer">
-            <small class="text-muted">${{ starter[5] }}</small>
-          </div>
         </div>
-      </div>
     {% endfor %}
   {% endif %}
 </div>
@@ -61,19 +61,19 @@
     </div>
   {% else %}
     {% for main_dish in main_dishes[-6:] %}
-      <div class="col">
-        <div class="card h-100">
-          <a href="/product/{{ main_dish[0] }}">
+    <div class="col">
+        <a href="/product/{{ main_dish[0] }}">
+          <div class="card h-100">
             <img src="{{url_for('static', filename='photos/' + main_dish[3])}}" class="card-img-top" alt="{{ main_dish[2] }}">
-          </a>
-          <div class="card-body">
-            <h5 class="card-title">{{ main_dish[2] }}</h5>
-            <p class="card-text">{{ main_dish[4] }}</p>
+            <div class="card-body">
+              <h5 class="card-title">{{ main_dish[2] }}</h5>
+              <p class="card-text">{{ main_dish[4] }}</p>
+            </div>
+            <div class="card-footer">
+              <small class="text-muted">${{ main_dish[5] }}</small>
+            </div>
           </div>
-          <div class="card-footer">
-            <small class="text-muted">${{ main_dish[5] }}</small>
-          </div>
-        </div>
+        </a>
       </div>
     {% endfor %}
   {% endif %}
@@ -101,18 +101,18 @@
   {% else %}
     {% for dessert in desserts[-6:] %}
       <div class="col">
-        <div class="card h-100">
-          <a href="/product/{{ dessert[0] }}">
+        <a href="/product/{{ dessert[0] }}">
+          <div class="card h-100">
             <img src="{{url_for('static', filename='photos/' + dessert[3])}}" class="card-img-top" alt="{{ dessert[2] }}">
-          </a>
-          <div class="card-body">
-            <h5 class="card-title">{{ dessert[2] }}</h5>
-            <p class="card-text">{{ dessert[4] }}</p>
+            <div class="card-body">
+              <h5 class="card-title">{{ dessert[2] }}</h5>
+              <p class="card-text">{{ dessert[4] }}</p>
+            </div>
+            <div class="card-footer">
+              <small class="text-muted">${{ dessert[5] }}</small>
+            </div>
           </div>
-          <div class="card-footer">
-            <small class="text-muted">${{ dessert[5] }}</small>
-          </div>
-        </div>
+        </a>
       </div>
     {% endfor %}
   {% endif %}

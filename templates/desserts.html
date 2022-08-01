@@ -9,7 +9,7 @@
   Desserts
 </div>
 <!-- Images -->
-<div class="row row-cols-1 row-cols-lg-6 row-cols-md-3 g-4">
+<div class="row row-cols-1 row-cols-lg-6 row-cols-md-3 g-4 text-center">
   {% if not desserts %}
     <div class="col">
       <div class="card h-100">
@@ -22,22 +22,24 @@
   {% else %}
     {% for dessert in desserts %}
       <div class="col">
-        <div class="card h-100">
-          <!-- Product image -->
-          <img src="{{url_for('static', filename='photos/' + dessert[3])}}" class="card-img-top" alt="{{ dessert[2] }}">
+        <a href="/product/{{ dessert[0] }}">
+          <div class="card h-100">
+            <!-- Product image -->
+            <img src="{{url_for('static', filename='photos/' + dessert[3])}}" class="card-img-top" alt="{{ dessert[2] }}">
 
-          <div class="card-body">
-            <!-- Product name -->
-            <h5 class="card-title">{{ dessert[2] }}</h5>
-            <!-- Product description -->
-            <p class="card-text">{{ dessert[4] }}</p>
-          </div>
+            <div class="card-body">
+              <!-- Product name -->
+              <h5 class="card-title">{{ dessert[2] }}</h5>
+              <!-- Product description -->
+              <p class="card-text">{{ dessert[4] }}</p>
+            </div>
 
-          <div class="card-footer d-flex justify-content-between align-items-center">
-            <!-- Product price -->
-            <small class="text-muted">${{ dessert[5] }}</small>
+            <div class="card-footer">
+              <!-- Product price -->
+              <small class="text-muted">${{ dessert[5] }}</small>
+            </div>
           </div>
-        </div>
+        </a>
       </div>
     {% endfor %}
   {% endif %}

@@ -9,7 +9,7 @@
   Main dishes
 </div>
 <!-- Images -->
-<div class="row row-cols-1 row-cols-lg-6 row-cols-md-3 g-4">
+<div class="row row-cols-1 row-cols-lg-6 row-cols-md-3 g-4 text-center">
   {% if not main_dishes %}
     <div class="col">
       <div class="card h-100">
@@ -22,22 +22,24 @@
   {% else %}
     {% for main_dish in main_dishes %}
       <div class="col">
-        <div class="card h-100">
-          <!-- Product image -->
-          <img src="{{url_for('static', filename='photos/' + main_dish[3])}}" class="card-img-top" alt="{{ main_dish[2] }}">
+        <a href="/product/{{ main_dish[0] }}">
+          <div class="card h-100">
+            <!-- Product image -->
+            <img src="{{url_for('static', filename='photos/' + main_dish[3])}}" class="card-img-top" alt="{{ main_dish[2] }}">
 
-          <div class="card-body">
-            <!-- Product name -->
-            <h5 class="card-title">{{ main_dish[2] }}</h5>
-            <!-- Product description -->
-            <p class="card-text">{{ main_dish[4] }}</p>
-          </div>
+            <div class="card-body">
+              <!-- Product name -->
+              <h5 class="card-title">{{ main_dish[2] }}</h5>
+              <!-- Product description -->
+              <p class="card-text">{{ main_dish[4] }}</p>
+            </div>
 
-          <div class="card-footer d-flex justify-content-between align-items-center">
-            <!-- Product price -->
-            <small class="text-muted">${{ main_dish[5] }}</small>
+            <div class="card-footer">
+              <!-- Product price -->
+              <small class="text-muted">${{ main_dish[5] }}</small>
+            </div>
           </div>
-        </div>
+        </a>
       </div>
     {% endfor %}
   {% endif %}
