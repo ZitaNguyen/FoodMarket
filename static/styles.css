@@ -25,10 +25,6 @@ nav .navbar-brand .blue
     text-transform: uppercase;
 }
 
-.card-profile > .card-img-top {
-    height: 5vw;
-}
-
 .button-see-more {
     text-decoration: none;
     float: right;
