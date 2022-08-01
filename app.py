@@ -57,7 +57,7 @@ def desserts():
     return render_template("desserts.html", desserts=desserts)
 
 
-@app.route("/seller/<string:seller_id>", methods=["GET"])
+@app.route("/seller/<int:seller_id>", methods=["GET"])
 @login_required
 def seller_profile(seller_id):
     seller = query_get_seller(seller_id)
@@ -93,11 +93,11 @@ def add():
     return sellers.add_products()
 
 
-@app.route("/display", methods=["GET"])
+@app.route("/profile", methods=["GET"])
 @login_required
 @role_required
 def display():
-    return sellers.display_products(session["user_id"])
+    return sellers.display_profile(session["user_id"])
 
 
 @app.route("/modify/<string:product_id>", methods=["GET", "POST"])

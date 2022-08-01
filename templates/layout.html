@@ -41,7 +41,12 @@
                             {% endif %}
                         </ul>
                         <ul class="navbar-nav ms-auto mt-2">
-                            <li class="nav-item"><a class="nav-link" href="/display">Hi,{{ session["user_name"].capitalize() }}</a></li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/profile">
+                                    Hi,{{ session["user_name"].capitalize() }}
+                                    <i class="bi bi-person-fill"></i>
+                                </a>
+                            </li>
                             <li class="nav-item"><a class="nav-link" href="/logout">Log Out</a></li>
                         </ul>
                     {% else %}

@@ -5,7 +5,7 @@ from werkzeug.utils import secure_filename
 from datetime import datetime
 
 from helpers import error, allowed_file
-from queries import query_add_product, query_modify_product, query_delete_product, query_get_a_product, query_get_seller_products
+from queries import query_add_product, query_modify_product, query_delete_product, query_get_a_product, query_get_seller_products, query_get_seller, query_get_contact
 
 
 def add_products():
@@ -45,15 +45,17 @@ def add_products():
         return render_template("add_product.html")
 
 
-def display_products(seller_id):
+def display_profile(seller_id):
     """Display all seller's products"""
 
+    seller = query_get_seller(seller_id)
+    contact = query_get_contact(seller_id)
     products = query_get_seller_products(seller_id)
     starters = list(filter(lambda product: product[1] == "Starter", products))
     main_dishes = list(filter(lambda product: product[1] == "Main dish", products))
     desserts = list(filter(lambda product: product[1] == "Dessert", products))
 
-    return render_template("display_products.html", starters=starters, main_dishes=main_dishes, desserts=desserts)
+    return render_template("profile.html", seller=seller, starters=starters, main_dishes=main_dishes, desserts=desserts, contact=contact)
 
 
 def modify_product(product_id):
