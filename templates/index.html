@@ -21,7 +21,7 @@
       </div>
     </div>
   {% else %}
-    {% for starter in starters[-6:] %}
+    {% for starter in starters[-6:]|reverse %}
       <div class="col">
         <a href="/product/{{ starter[0] }}">
           <div class="card h-100">
@@ -60,7 +60,7 @@
       </div>
     </div>
   {% else %}
-    {% for main_dish in main_dishes[-6:] %}
+    {% for main_dish in main_dishes[-6:]|reverse %}
     <div class="col">
         <a href="/product/{{ main_dish[0] }}">
           <div class="card h-100">
@@ -99,7 +99,7 @@
       </div>
     </div>
   {% else %}
-    {% for dessert in desserts[-6:] %}
+    {% for dessert in desserts[-6:]|reverse %}
       <div class="col">
         <a href="/product/{{ dessert[0] }}">
           <div class="card h-100">
