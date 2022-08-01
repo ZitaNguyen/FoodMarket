@@ -42,16 +42,9 @@ def query_insert_contact(contact_details):
 def query_get_seller(id):
     conn = sqlite3.connect("market.db")
     c = conn.cursor()
-    c.execute("SELECT * FROM users WHERE id = ?", (id,))
+    c.execute("SELECT username, email, about, district, city, phone  FROM users INNER JOIN contact ON users.id = contact.user_id WHERE users.id = ?", (id,))
     seller = c.fetchone()
     return seller
-
-def query_get_contact(id):
-    conn = sqlite3.connect("market.db")
-    c = conn.cursor()
-    c.execute("SELECT * FROM contact WHERE user_id = ?", (id,))
-    contact = c.fetchone()
-    return contact
 
 
 def query_add_product(food_details):
@@ -84,6 +77,14 @@ def query_get_seller_products(user_id):
     conn = sqlite3.connect("market.db")
     c = conn.cursor()
     c.execute("SELECT * FROM food WHERE user_id = ?", (user_id,))
+    products = c.fetchall()
+    return products
+
+
+def query_get_seller_other_products(user_id, food_id):
+    conn = sqlite3.connect("market.db")
+    c = conn.cursor()
+    c.execute("SELECT * FROM food WHERE user_id = ? AND id NOT IN (?)", (user_id, food_id))
     products = c.fetchall()
     return products
 

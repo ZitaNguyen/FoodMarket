@@ -24,7 +24,7 @@
     {% for starter in starters[-6:] %}
       <div class="col">
         <div class="card h-100">
-          <a href="/seller/{{ starter[7] }}">
+          <a href="/product/{{ starter[0] }}">
             <img src="{{url_for('static', filename='photos/' + starter[3])}}" class="card-img-top" alt="{{ starter[2] }}">
           </a>
           <div class="card-body">
@@ -63,7 +63,7 @@
     {% for main_dish in main_dishes[-6:] %}
       <div class="col">
         <div class="card h-100">
-          <a href="/seller/{{ main_dish[7] }}">
+          <a href="/product/{{ main_dish[0] }}">
             <img src="{{url_for('static', filename='photos/' + main_dish[3])}}" class="card-img-top" alt="{{ main_dish[2] }}">
           </a>
           <div class="card-body">
@@ -102,7 +102,7 @@
     {% for dessert in desserts[-6:] %}
       <div class="col">
         <div class="card h-100">
-          <a href="/seller/{{ dessert[7] }}">
+          <a href="/product/{{ dessert[0] }}">
             <img src="{{url_for('static', filename='photos/' + dessert[3])}}" class="card-img-top" alt="{{ dessert[2] }}">
           </a>
           <div class="card-body">

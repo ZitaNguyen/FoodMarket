@@ -1,0 +1,87 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Display Products
+{% endblock %}
+
+{% block main %}
+<div class="row mx-5">
+  <!-- Contact -->
+  <div class="col-xs-1 col-lg-3">
+      <div class="h3 py-3">
+          Contact
+      </div>
+      <dl class="row">
+          <dt class="col-sm-3">Name</dt>
+          <dd class="col-sm-9">{{ seller[0].capitalize() }}</dd>
+
+          <dt class="col-sm-3">About</dt>
+          <dd class="col-sm-9">{{ seller[2] }}</dd>
+
+          <dt class="col-sm-3">Phone</dt>
+          <dd class="col-sm-9">{{ seller[5] }}</dd>
+
+          <dt class="col-sm-3">Email</dt>
+          <dd class="col-sm-9">{{ seller[1] }}</dd>
+
+          <dt class="col-sm-3">District</dt>
+          <dd class="col-sm-9">{{ seller[3] }}</dd>
+
+          <dt class="col-sm-3">City</dt>
+          <dd class="col-sm-9">{{ seller[4] }}</dd>
+      </dl>
+  </div>
+
+  <!-- Menu -->
+  <div class="col-xs-1 col-lg-9">
+      <div class="d-flex mb-5 justify-content-evenly">
+        <img src="{{url_for('static', filename='photos/' + this_product[3])}}" class="img-fluid" alt="{{ this_product[2] }}">
+        <div>
+          <p class="display-6 text-uppercase">{{ this_product[2] }}</p>
+          <p class="">{{ this_product[4] }}</p>
+          <small class="">${{ this_product[5] }}</small>
+        </div>
+      </div>
+      <div class="alert alert-primary text-center h3" role="alert">
+          Other products from {{ seller[0].capitalize() }}
+      </div>
+      <div>
+          <div class="py-3">
+              <div class="row row-cols-1 row-cols-md-4 g-4 text-center">
+                  {% if not products %}
+                      <div class="col">
+                          <div class="card h-100">
+                          <img class="card-img-top" src="{{url_for('static', filename='photos/no_food.jpeg')}}" alt="No product">
+                          <div class="card-body">
+                              <p class="card-text">No more dish.</p>
+                          </div>
+                          </div>
+                      </div>
+                  {% else %}
+                      {% for product in products %}
+                          <div class="col">
+                              <div class="card h-100">
+                                  <!-- Product image -->
+                                  <img src="{{url_for('static', filename='photos/' + product[3])}}" class="card-img-top" alt="{{ product[2] }}">
+
+                                  <div class="card-body">
+                                      <!-- Product name -->
+                                      <h5 class="card-title">{{ product[2] }}</h5>
+                                      <!-- Product description -->
+                                      <p class="card-text">{{ product[4] }}</p>
+                                  </div>
+
+                                  <div class="card-footer">
+                                      <!-- Product price -->
+                                      <small class="text-muted">${{ product[5] }}</small>
+                                  </div>
+                              </div>
+                          </div>
+                      {% endfor %}
+                  {% endif %}
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+{% endblock %}
