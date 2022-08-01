@@ -54,7 +54,7 @@ def display_profile(seller_id):
     main_dishes = list(filter(lambda product: product[1] == "Main dish", products))
     desserts = list(filter(lambda product: product[1] == "Dessert", products))
 
-    return render_template("profile.html", seller=seller, starters=starters, main_dishes=main_dishes, desserts=desserts)
+    return render_template("seller_profile.html", seller=seller, starters=starters, main_dishes=main_dishes, desserts=desserts)
 
 
 def modify_product(product_id):

@@ -5,179 +5,29 @@
 {% endblock %}
 
 {% block main %}
-<div class="row mx-5">
-    <!-- Contact -->
-    <div class="col-xs-1 col-lg-3">
-        <div class="h3 py-3">
-            Contact
-        </div>
-        <dl class="row">
-            <dt class="col-sm-3">Name</dt>
-            <dd class="col-sm-9">{{ seller[0].capitalize() }}</dd>
-
-            <dt class="col-sm-3">About</dt>
-            <dd class="col-sm-9">{{ seller[2] }}</dd>
-
-            <dt class="col-sm-3">Phone</dt>
-            <dd class="col-sm-9">{{ seller[5] }}</dd>
-
-            <dt class="col-sm-3">Email</dt>
-            <dd class="col-sm-9">{{ seller[1] }}</dd>
-
-            <dt class="col-sm-3">District</dt>
-            <dd class="col-sm-9">{{ seller[3] }}</dd>
-
-            <dt class="col-sm-3">City</dt>
-            <dd class="col-sm-9">{{ seller[4] }}</dd>
-        </dl>
+<div class="alert alert-primary text-center h3" role="alert">
+    Contact
+</div>
+<div class="row row-cols-1 row-cols-lg-3">
+    <div class="col"></div>
+    <div class="col mx-5">
+        <table class="table table-borderless">
+            <tbody>
+              <tr>
+                <th scope="row">Name</th>
+                <td>{{ user[1].capitalize() }}</td>
+              </tr>
+              <tr>
+                <th scope="row">Email</th>
+                <td>{{ user[2] }}</td>
+              </tr>
+            </tbody>
+        </table>
         <div class="d-flex flex-wrap justify-content-around">
-            <button type="button" class="btn btn-primary my-3">Edit profile</button>
-            <button type="button" class="btn btn-danger my-3">Delete profile</button>
+            <a class="btn btn-info" href="/edit/{{ user[0] }}" role="button">Edit profile</a>
+            <a class="btn btn-danger" href="#" role="button">Delete profile</a>
         </div>
     </div>
-
-    <!-- Menu -->
-    <div class="col-xs-1 col-lg-9">
-        <div class="alert alert-primary text-center h3" role="alert">
-            Menu
-        </div>
-        <div>
-            <!-- Starters -->
-            <div class="py-3">
-                <h5>Starters</h5>
-                <div class="row row-cols-1 row-cols-md-4 g-4 text-center">
-                    {% if not starters %}
-                        <div class="col">
-                            <div class="card h-100">
-                            <img class="card-img-top" src="{{url_for('static', filename='photos/no_food.jpeg')}}" alt="No product">
-                            <div class="card-body">
-                                <p class="card-text">No main dish.</p>
-                            </div>
-                            </div>
-                        </div>
-                    {% else %}
-                        {% for starter in starters %}
-                            <div class="col">
-                                <div class="card h-100">
-                                    <!-- Product image -->
-                                    <img src="{{url_for('static', filename='photos/' + starter[3])}}" class="card-img-top" alt="{{ starter[2] }}">
-
-                                    <div class="card-body">
-                                        <!-- Product name -->
-                                        <h5 class="card-title">{{ starter[2] }}</h5>
-                                        <!-- Product description -->
-                                        <p class="card-text">{{ starter[4] }}</p>
-                                    </div>
-
-                                    <div class="card-footer d-flex justify-content-between align-items-center">
-                                        <!-- Edit button -->
-                                        <form action="/modify/{{ starter[0] }}" method="get">
-                                        <button type="submit" class="btn btn-link"><span class="bi bi-pencil"></span></button>
-                                        </form>
-                                        <!-- Product price -->
-                                        <small class="text-muted">${{ starter[5] }}</small>
-                                        <!-- Delete button -->
-                                        <form action="/delete/{{ starter[0] }}" method="post">
-                                        <button type="submit" style="color: red; border: none;" class="btn"><span class="bi bi-trash"></span></button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        {% endfor %}
-                    {% endif %}
-                </div>
-            </div>
-            <!-- Main dishes -->
-            <div class="py-3">
-                <h5>Main dishes</h5>
-                <div class="row row-cols-1 row-cols-md-4 g-4 text-center">
-                    {% if not main_dishes %}
-                        <div class="col">
-                            <div class="card h-100">
-                            <img class="card-img-top" src="{{url_for('static', filename='photos/no_food.jpeg')}}" alt="No product">
-                            <div class="card-body">
-                                <p class="card-text">No main dish.</p>
-                            </div>
-                            </div>
-                        </div>
-                    {% else %}
-                        {% for main_dish in main_dishes %}
-                            <div class="col">
-                                <div class="card h-100">
-                                    <!-- Product image -->
-                                    <img src="{{url_for('static', filename='photos/' + main_dish[3])}}" class="card-img-top" alt="{{ main_dish[2] }}">
-
-                                    <div class="card-body">
-                                        <!-- Product name -->
-                                        <h5 class="card-title">{{ main_dish[2] }}</h5>
-                                        <!-- Product description -->
-                                        <p class="card-text">{{ main_dish[4] }}</p>
-                                    </div>
-
-                                    <div class="card-footer d-flex justify-content-between align-items-center">
-                                        <!-- Edit button -->
-                                        <form action="/modify/{{ main_dish[0] }}" method="get">
-                                        <button type="submit" class="btn btn-link"><span class="bi bi-pencil"></span></button>
-                                        </form>
-                                        <!-- Product price -->
-                                        <small class="text-muted">${{ main_dish[5] }}</small>
-                                        <!-- Delete button -->
-                                        <form action="/delete/{{ main_dish[0] }}" method="post">
-                                        <button type="submit" style="color: red; border: none;" class="btn"><span class="bi bi-trash"></span></button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        {% endfor %}
-                    {% endif %}
-                </div>
-            </div>
-            <!-- Desserts -->
-            <div class="py-3">
-                <h5>Desserts</h5>
-                <div class="row row-cols-1 row-cols-md-4 g-4 text-center">
-                    {% if not desserts %}
-                        <div class="col">
-                            <div class="card h-100">
-                            <img class="card-img-top" src="{{url_for('static', filename='photos/no_food.jpeg')}}" alt="No product">
-                            <div class="card-body">
-                                <p class="card-text">No main dish.</p>
-                            </div>
-                            </div>
-                        </div>
-                    {% else %}
-                        {% for dessert in desserts %}
-                            <div class="col">
-                                <div class="card h-100">
-                                    <!-- Product image -->
-                                    <img src="{{url_for('static', filename='photos/' + dessert[3])}}" class="card-img-top" alt="{{ dessert[2] }}">
-
-                                    <div class="card-body">
-                                        <!-- Product name -->
-                                        <h5 class="card-title">{{ dessert[2] }}</h5>
-                                        <!-- Product description -->
-                                        <p class="card-text">{{ dessert[4] }}</p>
-                                    </div>
-
-                                    <div class="card-footer d-flex justify-content-between align-items-center">
-                                        <!-- Edit button -->
-                                        <form action="/modify/{{ dessert[0] }}" method="get">
-                                        <button type="submit" class="btn btn-link"><span class="bi bi-pencil"></span></button>
-                                        </form>
-                                        <!-- Product price -->
-                                        <small class="text-muted">${{ dessert[5] }}</small>
-                                        <!-- Delete button -->
-                                        <form action="/delete/{{ dessert[0] }}" method="post">
-                                        <button type="submit" style="color: red; border: none;" class="btn"><span class="bi bi-trash"></span></button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        {% endfor %}
-                    {% endif %}
-                </div>
-            </div>
-        </div>
-    </div>
+    <div class="col"></div>
 </div>
 {% endblock %}

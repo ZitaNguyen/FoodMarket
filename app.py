@@ -76,7 +76,7 @@ def product(food_id):
     return render_template("product.html", seller=seller, this_product=product, products=products_from_same_seller)
 
 
-# Users register, login, logout
+# Users register, login, logout, display profile
 @app.route("/register", methods=["GET", "POST"])
 def register():
     return users.register()
@@ -92,6 +92,12 @@ def logout():
     return users.logout()
 
 
+@app.route("/profile", methods=["GET"])
+@login_required
+def display():
+    return users.display_profile(session["user_id"])
+
+
 # Sellers add, display, modify and delete product
 @app.route("/add", methods=["GET", "POST"])
 @login_required
@@ -100,10 +106,10 @@ def add():
     return sellers.add_products()
 
 
-@app.route("/profile", methods=["GET"])
+@app.route("/seller_profile", methods=["GET"])
 @login_required
 @role_required
-def display():
+def display_seller():
     return sellers.display_profile(session["user_id"])
 
 

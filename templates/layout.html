@@ -42,10 +42,17 @@
                         </ul>
                         <ul class="navbar-nav ms-auto mt-2">
                             <li class="nav-item">
-                                <a class="nav-link" href="/profile">
-                                    Hi,{{ session["user_name"].capitalize() }}
-                                    <i class="bi bi-person-fill"></i>
-                                </a>
+                                {% if session["user_role"] == "seller" %}
+                                    <a class="nav-link" href="/seller_profile">
+                                        Hi,{{ session["user_name"].capitalize() }}
+                                        <i class="bi bi-person-fill"></i>
+                                    </a>
+                                {% else %}
+                                    <a class="nav-link" href="/profile">
+                                        Hi,{{ session["user_name"].capitalize() }}
+                                        <i class="bi bi-person-fill"></i>
+                                    </a>
+                                {% endif %}
                             </li>
                             <li class="nav-item"><a class="nav-link" href="/logout">Log Out</a></li>
                         </ul>

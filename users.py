@@ -1,7 +1,7 @@
 from flask import session, request, redirect, render_template
 from werkzeug.security import check_password_hash, generate_password_hash
 from helpers import error
-from queries import query_users, query_insert_user, query_insert_contact, query_get_last_user
+from queries import query_get_user, query_users, query_insert_user, query_insert_contact, query_get_last_user
 
 
 def register():
@@ -102,3 +102,9 @@ def logout():
     session.clear()
 
     return redirect("/")
+
+
+def display_profile(user_id):
+
+    user = query_get_user(user_id)
+    return render_template("profile.html", user=user)
