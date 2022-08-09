@@ -49,7 +49,7 @@ def query_insert_contact(contact_details):
 def query_get_seller(id):
     conn = sqlite3.connect("market.db")
     c = conn.cursor()
-    c.execute("SELECT username, email, about, district, city, phone, users.id, hash  FROM users INNER JOIN contact ON users.id = contact.user_id WHERE users.id = ?", (id,))
+    c.execute("SELECT users.*, contact.district, contact.city, contact.phone FROM users INNER JOIN contact ON users.id = contact.user_id WHERE users.id = ?", (id,))
     seller = c.fetchone()
     return seller
 

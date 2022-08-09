@@ -14,7 +14,7 @@
         <div class="form-group row justify-content-center">
             <label for="username" class="col-sm-2 col-form-label">Name:</label>
             <div class="col-sm-2">
-                <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="username" name="username" type="text" value="">
+                <input autocomplete="off" class="form-control mx-auto w-auto" id="username" name="username" type="text" value="{{ user[1] }}">
             </div>
         </div>
     </div>
@@ -23,7 +23,7 @@
         <div class="form-group row justify-content-center">
             <label for="email" class="col-sm-2 col-form-label">Email:</label>
             <div class="col-sm-2">
-                <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="email" name="email" type="email" value="">
+                <input autocomplete="off" class="form-control mx-auto w-auto" id="email" name="email" type="email" value="{{ user[2] }}">
             </div>
         </div>
     </div>
@@ -32,7 +32,7 @@
         <div class="form-group row justify-content-center">
             <label for="old_password" class="col-sm-2 col-form-label">Old Password:</label>
             <div class="col-sm-2">
-                <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="old_password" name="old_password" type="password" value="">
+                <input autocomplete="off" class="form-control mx-auto w-auto" id="old_password" name="old_password" type="password" value="">
             </div>
         </div>
     </div>
@@ -41,7 +41,7 @@
         <div class="form-group row justify-content-center">
             <label for="new_password" class="col-sm-2 col-form-label">New Password:</label>
             <div class="col-sm-2">
-                <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="new_password" name="new_password" type="password" value="">
+                <input autocomplete="off" class="form-control mx-auto w-auto" id="new_password" name="new_password" type="password" value="">
             </div>
         </div>
     </div>
@@ -50,7 +50,7 @@
         <div class="form-group row justify-content-center">
             <label for="confirmation" class="col-sm-2 col-form-label">Confirmation:</label>
             <div class="col-sm-2">
-                <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="confirmation" name="confirmation" type="password" value="">
+                <input autocomplete="off" class="form-control mx-auto w-auto" id="confirmation" name="confirmation" type="password" value="">
             </div>
         </div>
     </div>
@@ -61,7 +61,7 @@
             <div class="form-group row justify-content-center">
                 <label for="phone" class="col-sm-2 col-form-label">Phone:</label>
                 <div class="col-sm-2">
-                    <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="phone" name="phone" type="text" value="">
+                    <input autocomplete="off" class="form-control mx-auto w-auto" id="phone" name="phone" type="text" value=" {{ user[8] if user[8] is not none }}">
                 </div>
             </div>
         </div>
@@ -70,7 +70,7 @@
             <div class="form-group row justify-content-center">
                 <label for="district" class="col-sm-2 col-form-label">District:</label>
                 <div class="col-sm-2">
-                    <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="district" name="district" type="text" value="">
+                    <input autocomplete="off" class="form-control mx-auto w-auto" id="district" name="district" type="text" value="{{ user[6] if user[6] is not none }}">
                 </div>
             </div>
         </div>
@@ -79,7 +79,7 @@
             <div class="form-group row justify-content-center">
                 <label for="city" class="col-sm-2 col-form-label">City:</label>
                 <div class="col-sm-2">
-                    <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="city" name="city" type="text" value="">
+                    <input autocomplete="off" class="form-control mx-auto w-auto" id="city" name="city" type="text" value="{{ user[7] if user[7] is not none }}">
                 </div>
             </div>
         </div>
@@ -88,7 +88,7 @@
             <div class="form-group row justify-content-center">
                 <label for="about" class="col-sm-2 col-form-label">About:</label>
                 <div class="col-sm-2">
-                    <textarea class="form-control mx-auto w-auto" name="about" cols="30" rows="5" placeholder=""></textarea>
+                    <textarea class="form-control mx-auto w-auto" name="about" cols="30" rows="5" placeholder="{{ user[5] if user[5] is not none }}"></textarea>
                 </div>
             </div>
         </div>
@@ -104,7 +104,7 @@
             }
         </script>
     {% endblock %}
-    <button class="btn btn-primary" type="submit">Edit</button>
+    <button class="btn btn-primary" type="submit">Save</button>
 </form>
 
 {% endblock %}

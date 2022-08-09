@@ -122,6 +122,7 @@ def edit_profile(user_id, user_role):
     else:
         if user_role == "buyer":
             user = query_get_user(user_id)
+
         else:
             user = query_get_seller(user_id)
 
