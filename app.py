@@ -98,6 +98,13 @@ def display():
     return users.display_profile(session["user_id"])
 
 
+# Users edit, delete profile
+@app.route("/edit", methods=["GET", "POST"])
+@login_required
+def edit():
+    return users.edit_profile(session["user_id"], session["user_role"])
+
+
 # Sellers add, display, modify and delete product
 @app.route("/add", methods=["GET", "POST"])
 @login_required
