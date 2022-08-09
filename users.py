@@ -1,7 +1,7 @@
 from flask import session, request, redirect, render_template
 from werkzeug.security import check_password_hash, generate_password_hash
 from helpers import error
-from queries import query_get_seller, query_get_user, query_users, query_insert_user, query_insert_contact, query_get_last_user
+from queries import query_get_seller, query_get_user, query_users, query_insert_user, query_insert_contact, query_get_last_user, query_edit_profile
 
 
 def register():
@@ -115,6 +115,30 @@ def edit_profile(user_id, user_role):
 
     if request.method == "POST":
         if user_role == "buyer":
+
+            user = query_get_user(user_id)
+
+            username = request.form.get("username")
+            new_password = request.form.get("new_password")
+            old_password = request.form.get("old_password")
+            confirmation = request.form.get("confirmation")
+
+            # Check if user wanna change password
+            if not new_password and not confirmation:
+                hash = user[3]
+            elif (new_password and not confirmation) or (not new_password and confirmation):
+                return error("a password is left empty", 400)
+            elif not old_password:
+                return error("old password is missing", 400)
+            elif not check_password_hash(user[3], old_password):
+                return error("password is incorrect", 403)
+            elif new_password != confirmation:
+                return error("passwords do not match", 403)
+            else:
+                hash = generate_password_hash(new_password)
+
+            user_details = (username, hash, session["user_id"])
+            query_edit_profile(user_details)
             return redirect("/profile")
         else:
             return redirect("/seller_profile")

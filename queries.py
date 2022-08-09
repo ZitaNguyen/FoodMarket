@@ -44,6 +44,15 @@ def query_insert_contact(contact_details):
     conn.close()
 
 
+def query_edit_profile(user_details):
+    conn = sqlite3.connect("market.db")
+    c = conn.cursor()
+    sql_string = "UPDATE users SET (username, hash) = (?, ?) WHERE id = ?"
+    c.execute(sql_string, user_details)
+    conn.commit()
+    conn.close()
+
+
 # Queries for sellers
 
 def query_get_seller(id):
