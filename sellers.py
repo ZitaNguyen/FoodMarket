@@ -39,7 +39,7 @@ def add_products():
         food_details = (name, category, url_photo, price, description, now, session["user_id"])
         query_add_product(food_details)
 
-        return redirect("/display")
+        return redirect("/seller_profile")
 
     else:
         return render_template("add_product.html")
@@ -68,10 +68,10 @@ def modify_product(product_id):
         name = request.form.get("food-name")
         category = request.form.get("food-category")
         price = request.form.get("food-price")
-        if request.form.get("food-description") == '':
-            description = product[4]
-        else:
-            description = request.form.get("food-description")
+        description = request.form.get("food-description")
+
+        if not name or not price or not description:
+            return error("something is left empty", 400)
 
         # Check if modify photo
         photo = request.files["food-photo"]
@@ -88,7 +88,7 @@ def modify_product(product_id):
         food_details = (name, category, url_photo, price, description, product_id)
         query_modify_product(food_details)
 
-        return redirect("/display")
+        return redirect("/seller_profile")
 
     else:
 
@@ -100,4 +100,4 @@ def delete_product(product_id):
 
     query_delete_product(product_id)
 
-    return redirect("/display")
+    return redirect("/seller_profile")

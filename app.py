@@ -120,14 +120,14 @@ def display_seller():
     return sellers.display_profile(session["user_id"])
 
 
-@app.route("/modify/<int:food_id>", methods=["GET", "POST"])
+@app.route("/modify/<int:product_id>", methods=["GET", "POST"])
 @login_required
 @role_required
 def modify(product_id):
     return sellers.modify_product(product_id)
 
 
-@app.route("/delete/<int:food_id>", methods=["POST"])
+@app.route("/delete/<int:product_id>", methods=["POST"])
 @login_required
 @role_required
 def delete(product_id):

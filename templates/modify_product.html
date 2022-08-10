@@ -10,7 +10,7 @@
             <div class="form-group row justify-content-center">
                 <label for="food-name" class="col-sm-2 col-form-label">Food name:</label>
                 <div class="col-sm-2">
-                    <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="food-name" name="food-name" type="text" value="{{ product[2] }}">
+                    <input autocomplete="off" class="form-control mx-auto w-auto" id="food-name" name="food-name" type="text" value="{{ product[2] }}">
                 </div>
             </div>
         </div>
@@ -46,7 +46,7 @@
                 <div class="col-sm-2">
                     <div class="input-group">
                         <span class="input-group-text">$</span>
-                        <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="food-price" name="food-price" type="number" value="{{ product[5] }}">
+                        <input autocomplete="off" class="form-control mx-auto w-auto" id="food-price" name="food-price" type="number" value="{{ product[5] }}">
                     </div>
                 </div>
             </div>
@@ -56,7 +56,7 @@
             <div class="form-group row justify-content-center">
                 <label for="food-description" class="col-sm-2 col-form-label">Description:</label>
                 <div class="col-sm-2">
-                    <textarea class="form-control mx-auto w-auto" name="food-description" cols="30" rows="5" placeholder="{{ product[4] }}"></textarea>
+                    <textarea class="form-control mx-auto w-auto" name="food-description" cols="30" rows="5">{{ product[4] }}</textarea>
                 </div>
             </div>
         </div>
