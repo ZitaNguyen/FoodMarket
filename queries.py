@@ -44,6 +44,16 @@ def query_edit_profile(user_details):
     conn.close()
 
 
+def query_delete_profile(user_id):
+    conn = sqlite3.connect("market.db")
+    c = conn.cursor()
+    c.execute("DELETE FROM users WHERE id = ?", (user_id,))
+    c.execute("DELETE FROM contact WHERE user_id = ?", (user_id,))
+    c.execute("DELETE FROM food WHERE user_id = ?", (user_id,))
+    conn.commit()
+    conn.close()
+
+
 # Queries for sellers
 
 def query_get_seller(id):

@@ -2,8 +2,8 @@ from flask import Flask, render_template, session
 from flask_session import Session
 
 import users, sellers
-from helpers import login_required, role_required
-from queries import query_get_all_products, query_get_a_product, query_get_seller, query_get_seller_other_products, query_get_starters, query_get_main_dishes, query_get_desserts
+from helpers import login_required, role_required, redirect
+from queries import query_get_all_products, query_get_a_product, query_get_seller, query_get_seller_other_products, query_get_starters, query_get_main_dishes, query_get_desserts, query_delete_profile
 
 # Configure application
 app = Flask(__name__)
@@ -99,10 +99,21 @@ def display():
 
 
 # Users edit, delete profile
-@app.route("/edit", methods=["GET", "POST"])
+@app.route("/edit_profile", methods=["GET", "POST"])
 @login_required
 def edit():
     return users.edit_profile(session["user_id"], session["user_role"])
+
+
+@app.route("/delete_profile", methods=["POST"])
+@login_required
+def delete_profile():
+    """Delete an existing user"""
+
+    query_delete_profile(session["user_id"])
+    session.clear()
+
+    return redirect("/register")
 
 
 # Sellers add, display, modify and delete product

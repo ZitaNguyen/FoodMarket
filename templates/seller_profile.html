@@ -38,8 +38,12 @@
             </tbody>
         </table>
         <div class="d-flex flex-wrap justify-content-start">
-            <a class="btn btn-info my-3" href="/edit" role="button">Edit profile</a>
-            <a class="btn btn-danger my-3" href="#" role="button">Delete profile</a>
+            <form action="/edit_profile" method="get">
+                <button type="submit" class="btn btn-info">Edit profile</button>
+            </form>
+            <form action="/delete_profile" method="post">
+                <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this item?');">Delete profile</button>
+            </form>
         </div>
     </div>
 
