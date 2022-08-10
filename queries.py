@@ -35,19 +35,10 @@ def query_insert_user(user_details):
     conn.close()
 
 
-def query_insert_contact(contact_details):
-    conn = sqlite3.connect("market.db")
-    c = conn.cursor()
-    sql_string = ("INSERT INTO contact (district, city, phone, user_id) VALUES (?, ?, ?, ?)")
-    c.execute(sql_string, contact_details)
-    conn.commit()
-    conn.close()
-
-
 def query_edit_profile(user_details):
     conn = sqlite3.connect("market.db")
     c = conn.cursor()
-    sql_string = "UPDATE users SET (username, hash) = (?, ?) WHERE id = ?"
+    sql_string = "UPDATE users SET (username, hash, about) = (?, ?, ?) WHERE id = ?"
     c.execute(sql_string, user_details)
     conn.commit()
     conn.close()
@@ -61,6 +52,24 @@ def query_get_seller(id):
     c.execute("SELECT users.*, contact.district, contact.city, contact.phone FROM users INNER JOIN contact ON users.id = contact.user_id WHERE users.id = ?", (id,))
     seller = c.fetchone()
     return seller
+
+
+def query_insert_contact(contact_details):
+    conn = sqlite3.connect("market.db")
+    c = conn.cursor()
+    sql_string = "INSERT INTO contact (district, city, phone, user_id) VALUES (?, ?, ?, ?)"
+    c.execute(sql_string, contact_details)
+    conn.commit()
+    conn.close()
+
+
+def query_edit_contact(contact_details):
+    conn = sqlite3.connect("market.db")
+    c = conn.cursor()
+    sql_string = "UPDATE contact SET (district, city, phone) = (?, ?, ?) WHERE user_id = ?"
+    c.execute(sql_string, contact_details)
+    conn.commit()
+    conn.close()
 
 
 def query_add_product(food_details):
