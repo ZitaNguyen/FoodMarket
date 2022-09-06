@@ -116,6 +116,13 @@ def delete_profile():
     return redirect("/register")
 
 
+# Users search
+@app.route("/search", methods=["POST"])
+@login_required
+def search():
+    return users.search()
+
+
 # Sellers add, display, modify and delete product
 @app.route("/add", methods=["GET", "POST"])
 @login_required

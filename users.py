@@ -1,7 +1,7 @@
 from flask import session, request, redirect, render_template
 from werkzeug.security import check_password_hash, generate_password_hash
 from helpers import error
-from queries import query_get_seller, query_get_user, query_users, query_insert_user, query_insert_contact, query_get_last_user, query_edit_profile, query_edit_contact, query_delete_profile
+from queries import query_get_seller, query_get_user, query_users, query_insert_user, query_insert_contact, query_get_last_user, query_edit_profile, query_edit_contact, query_delete_profile, query_get_search_results
 
 
 def register():
@@ -171,3 +171,10 @@ def edit_profile(user_id, user_role):
             user = query_get_seller(user_id)
 
         return render_template("edit_profile.html", user=user, role=user_role)
+
+
+def search():
+
+    q = request.form.get("q").lower()
+    results = query_get_search_results(q)
+    return render_template("search.html", results=results)

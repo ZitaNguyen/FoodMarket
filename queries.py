@@ -54,6 +54,13 @@ def query_delete_profile(user_id):
     conn.close()
 
 
+def query_get_search_results(query):
+    conn = sqlite3.connect("market.db")
+    c = conn.cursor()
+    c.execute("SELECT * FROM food WHERE name LIKE ? OR name LIKE ? OR name LIKE ? OR name LIKE ? ", (query, '%'+query, query+'%', '%'+query+'%'))
+    results = c.fetchall()
+    return results
+
 # Queries for sellers
 
 def query_get_seller(id):
