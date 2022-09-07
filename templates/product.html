@@ -42,7 +42,7 @@
   <!-- Menu -->
   <div class="col-xs-1 col-lg-9">
       <div class="d-flex flex-wrap mb-5 justify-content-evenly">
-        <img src="{{url_for('static', filename='photos/' + this_product[3])}}" class="img-fluid" alt="{{ this_product[2] }}">
+        <img src="{{url_for('static', filename='photos/' + this_product[3])}}" class="img-fluid" alt="{{ this_product[2] }}" style="max-height: 200px; max-width: 200px;">
         <div>
           <p class="display-6 text-uppercase">{{ this_product[2] }}</p>
           <p class="">{{ this_product[4] }}</p>
