@@ -5,9 +5,15 @@
 {% endblock %}
 
 {% block main %}
-    <div class="alert alert-success text-center h3" role="alert">
-        Search Results
-    </div>
+    {% if district != '' %}
+        <div class="alert alert-success text-center h3" role="alert">
+            Your Food List in District {{ district }}
+        </div>
+    {% else %}
+        <div class="alert alert-success text-center h3" role="alert">
+            Your Food List
+        </div>
+    {% endif %}
     <!-- Images -->
     {% if not results %}
         <p class="text-center">No result.</p>

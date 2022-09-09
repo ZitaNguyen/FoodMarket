@@ -1,4 +1,5 @@
 import sqlite3
+from unittest import result
 
 
 # Queries for users
@@ -54,12 +55,21 @@ def query_delete_profile(user_id):
     conn.close()
 
 
-def query_get_search_results(query):
+def query_get_search_food(query):
     conn = sqlite3.connect("market.db")
     c = conn.cursor()
     c.execute("SELECT * FROM food WHERE name LIKE ? OR name LIKE ? OR name LIKE ? OR name LIKE ? ", (query, '%'+query, query+'%', '%'+query+'%'))
     results = c.fetchall()
     return results
+
+
+def query_get_search_district(query):
+    conn = sqlite3.connect("market.db")
+    c = conn.cursor()
+    c.execute("SELECT * FROM food INNER JOIN users ON food.user_id = users.id INNER JOIN contact ON users.id = contact.user_id WHERE contact.district=?", (query,))
+    results = c.fetchall()
+    return results
+
 
 # Queries for sellers
 
