@@ -6,20 +6,18 @@
 #### Description:
 
 **Idea**
-Living in a foreign country, I am always craving for Vietnamese food, but it's hard to find.
-I only know some good sellers by the word-of-mouth or by Facebook groups. Moreover, some of them are really far from my place.
-I wish there would be an online market for the sellers to promote themselves and for the buyers to find Vietnamese food more easily.
+Living in a foreign country, I am always craving for Vietnamese food, but it's not easy to find.
+I only know some good sellers by the word-of-mouth or by Facebook groups. However, some of them are really far from my place.
+Therefore I would like to build a website for sellers to promote their business and for buyers to easily find Vietnamese food, which is nearby.
 
 **Website**
 
-* First of all, users can register as a buyer or a seller, which allows them to log in and log out.
+* Users can register as a buyer or a seller, which allows them to log in and log out.
 
-* Second, as a seller, they can add their products (food and/or restaurant)
+* As sellers, they can add, modify or delete their products.
 
-* Third, as a buyer, they can browse through the website for their desired product. They can look for any food/restaurant near their place or search by category/name.
-
-* Last, as a buyer, they can add their comments/ reviews as reference for others.
+* As buyers, they can browse through the website for their desired products, or sellers nearby.
 
 **Database diagram**
-![Food Market DB](/static/images/FoodMarket.png)
+![Food Market DB](/static/photos/FoodMarket.png)
 
