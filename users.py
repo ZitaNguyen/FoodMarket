@@ -1,7 +1,9 @@
 from flask import session, request, redirect, render_template
 from werkzeug.security import check_password_hash, generate_password_hash
 from helpers import error
-from queries import query_get_seller, query_get_user, query_users, query_insert_user, query_insert_contact, query_get_last_user, query_edit_profile, query_edit_contact, query_get_search_food, query_get_search_district
+from queries import query_get_seller, query_get_user, query_users, query_insert_user, \
+    query_insert_contact, query_get_last_user, query_edit_profile, query_edit_contact, \
+    query_get_search_food, query_get_search_district
 
 
 def register():

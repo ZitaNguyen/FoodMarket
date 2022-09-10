@@ -1,5 +1,6 @@
 from flask import redirect, render_template, session
 from functools import wraps
+from uuid import uuid4
 
 
 def error(message, code):
@@ -35,3 +36,8 @@ def allowed_file(filename):
     ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
     return '.' in filename and \
         filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+
+def make_unique(string):
+    ident = uuid4().__str__()
+    return f"{ident}-{string}"

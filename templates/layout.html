@@ -26,7 +26,6 @@
     </head>
 
     <body>
-
         <nav class="bg-light border navbar navbar-expand-md navbar-light">
             <div class="container-fluid">
                 <a class="navbar-brand" href="/"><span class="green">Food</span><i class="bi bi-shop"></i><span class="blue">Market</span></a>
@@ -74,7 +73,15 @@
                 </div>
             </div>
         </nav>
-
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class=flashes>
+            {% for message in messages %}
+            <li class="alert alert-success mt-5 me-5" role="alert">{{ message }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+        {% endwith %}
         <main class="container-fluid py-5">
             {% block main %}{% endblock %}
         </main>

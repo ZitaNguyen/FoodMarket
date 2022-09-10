@@ -1,11 +1,12 @@
 import os
 
-from flask import request, redirect, render_template, session
+from flask import request, redirect, render_template, session, flash
 from werkzeug.utils import secure_filename
 from datetime import datetime
 
-from helpers import error, allowed_file
-from queries import query_add_product, query_modify_product, query_delete_product, query_get_a_product, query_get_seller_products, query_get_seller
+from helpers import error, allowed_file, make_unique
+from queries import query_add_product, query_modify_product, query_delete_product, \
+    query_get_a_product, query_get_seller_products, query_get_seller
 
 
 def add_products():
@@ -27,8 +28,10 @@ def add_products():
 
         if photo and allowed_file(photo.filename):
             UPLOAD_FOLDER = 'static/photos'
-            photo.save(os.path.join(UPLOAD_FOLDER, secure_filename(photo.filename)))
-            url_photo = photo.filename
+            original_filename = secure_filename(photo.filename)
+            unique_filename = make_unique(original_filename)
+            photo.save(os.path.join(UPLOAD_FOLDER, unique_filename))
+            url_photo = unique_filename
         else:
             return error("file format is not allowed", 400)
 
@@ -99,5 +102,6 @@ def delete_product(product_id):
     """Delete an existing product"""
 
     query_delete_product(product_id)
+    flash("Item has been deleted!!!")
 
     return redirect("/seller_profile")
