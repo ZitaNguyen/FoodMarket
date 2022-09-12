@@ -8,6 +8,7 @@ def query_users(email):
     c = conn.cursor()
     c.execute("SELECT * FROM users WHERE email = ?", (email,))
     users = c.fetchall()
+    conn.close()
     return users
 
 
@@ -16,6 +17,7 @@ def query_get_user(id):
     c = conn.cursor()
     c.execute("SELECT * FROM users WHERE id = ?", (id,))
     user = c.fetchone()
+    conn.close()
     return user
 
 def query_get_last_user():
@@ -23,6 +25,7 @@ def query_get_last_user():
     c = conn.cursor()
     c.execute("SELECT id FROM users WHERE id=(SELECT max(id) FROM users)")
     last_user = c.fetchone()
+    conn.close()
     return last_user
 
 
@@ -59,6 +62,7 @@ def query_get_search_food(query):
     c = conn.cursor()
     c.execute("SELECT * FROM food WHERE name LIKE ? OR name LIKE ? OR name LIKE ? OR name LIKE ? ", (query, '%'+query, query+'%', '%'+query+'%'))
     results = c.fetchall()
+    conn.close()
     return results
 
 
@@ -67,6 +71,7 @@ def query_get_search_district(query):
     c = conn.cursor()
     c.execute("SELECT * FROM food INNER JOIN users ON food.user_id = users.id INNER JOIN contact ON users.id = contact.user_id WHERE contact.district=?", (query,))
     results = c.fetchall()
+    conn.close()
     return results
 
 
@@ -77,6 +82,7 @@ def query_get_seller(id):
     c = conn.cursor()
     c.execute("SELECT users.*, contact.district, contact.city, contact.phone FROM users INNER JOIN contact ON users.id = contact.user_id WHERE users.id = ?", (id,))
     seller = c.fetchone()
+    conn.close()
     return seller
 
 
@@ -129,6 +135,7 @@ def query_get_seller_products(user_id):
     c = conn.cursor()
     c.execute("SELECT * FROM food WHERE user_id = ?", (user_id,))
     products = c.fetchall()
+    conn.close()
     return products
 
 
@@ -137,6 +144,7 @@ def query_get_seller_other_products(user_id, food_id):
     c = conn.cursor()
     c.execute("SELECT * FROM food WHERE user_id = ? AND id NOT IN (?)", (user_id, food_id))
     products = c.fetchall()
+    conn.close()
     return products
 
 
@@ -147,6 +155,7 @@ def query_get_all_products():
     c = conn.cursor()
     c.execute ("SELECT * FROM food")
     all_products = c.fetchall()
+    conn.close()
     return all_products
 
 
@@ -155,6 +164,7 @@ def query_get_a_product(id):
     c = conn.cursor()
     c.execute("SELECT * FROM food WHERE id = ?", (id,))
     product = c.fetchone()
+    conn.close()
     return product
 
 
@@ -163,6 +173,7 @@ def query_get_starters():
     c = conn.cursor()
     c.execute("SELECT * FROM food WHERE category='Starter' ")
     starters = c.fetchall()
+    conn.close()
     return starters
 
 
@@ -171,6 +182,7 @@ def query_get_main_dishes():
     c = conn.cursor()
     c.execute("SELECT * FROM food WHERE category='Main dish' ")
     main_dishes = c.fetchall()
+    conn.close()
     return main_dishes
 
 
@@ -179,4 +191,5 @@ def query_get_desserts():
     c = conn.cursor()
     c.execute("SELECT * FROM food WHERE category='Dessert' ")
     desserts = c.fetchall()
+    conn.close()
     return desserts

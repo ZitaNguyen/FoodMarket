@@ -19,7 +19,7 @@
             <div class="form-group row justify-content-center">
                 <label for="food-category" class="col-sm-2 col-form-label">Choose food category:</label>
                 <div class="col-sm-2">
-                    <input list="food-categories" id="food-kind" name="food-category" />
+                    <input list="food-categories" id="food-kind" name="food-category" class="form-control mx-auto w-auto" placeholder="Type to search..."/>
 
                     <datalist id="food-categories">
                         <option value="Starter">
@@ -35,6 +35,7 @@
                 <label for="food-photo" class="col-sm-2 col-form-label">Photo:</label>
                 <div class="col-sm-2">
                     <input class="form-control mx-auto w-auto" name="food-photo" type="file">
+                    <small class="text-muted">(Only png, jpg, jpeg, gif photo format allowed)</small>
                 </div>
             </div>
 
