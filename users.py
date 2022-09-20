@@ -1,3 +1,4 @@
+import re
 from flask import session, request, redirect, render_template
 from werkzeug.security import check_password_hash, generate_password_hash
 from helpers import error
@@ -180,8 +181,10 @@ def search():
     q = request.form.get("q").strip()
 
     # Check if user enter a district number
-    if (any(char.isdigit() for char in q)):
-        q = list(filter(str.isdigit, q))[0]
+    match = re.search('\d+', q)
+    
+    if match is not None:
+        q = match.group(0)
         results = query_get_search_district(q)
         return render_template("search.html", results=results, district=q)
     else:
