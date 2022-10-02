@@ -1,7 +1,7 @@
 
 # Food Market Web Application
 
-#### Video Demo:  <URL HERE>
+#### Video Demo:   [URL here](https://www.youtube.com/watch?v=0olo0vUtuM0)
 
 #### Description:
 
@@ -13,7 +13,7 @@ Therefore I would like to build a website for sellers to promote their business 
 
 **Website**
 
-* Users can register as a buyer or a seller, which allows them to log in and log out.
+* Users can register as a buyer or a seller, which allows them to log in and log out. Then they can modify or delete their profile.
 
 * As sellers, they can add, modify or delete their products.
 
