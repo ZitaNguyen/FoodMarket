@@ -53,11 +53,11 @@ $ python --version
 ```
 2. Clone this project to your local
 ```
-$ git clone https://github.com/ZitaNguyen/foodmarket.git
+$ git clone https://github.com/ZitaNguyen/FoodMarket.git
 ```
 3. Create virtual environment and activate
 ```
-$ pytho3 -m venv venv
+$ python3 -m venv venv
 $ source venv/bin/activate
 ```
 4. Install all required packages
